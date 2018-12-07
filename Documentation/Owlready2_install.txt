@@ -1,0 +1,15 @@
+How to install Owlready2 on Windows within Anaconda3
+
+1. Install 'Microsoft Visual C++ Build Tools'
+	https://www.microsoft.com/en-us/download/details.aspx?id=48159
+	
+2. Create a new environment 
+	conda create --name myenv
+
+3. Activate environment
+	activate myenv
+	
+3. install Owlready2
+	pip install --no-cache-dir Owlready2
+	
+enjoy
