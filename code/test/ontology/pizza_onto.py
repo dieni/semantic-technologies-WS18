@@ -2,7 +2,7 @@
 
 # Load an ontology from a local repository, or from Internet:
 from owlready2 import *
-owl_output_path = os.path.join(os.path.abspath(''),'test')
+owl_output_path = os.path.join(os.path.abspath(''),'test', 'ontology')
 onto_path.append(owl_output_path)
 onto = get_ontology("http://www.lesfleursdunormal.fr/static/_downloads/pizza_onto.owl")
 onto.load()

@@ -60,8 +60,8 @@
 
 <Pizza rdf:about="#test_pizza_owl_identifier">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <has_topping rdf:resource="#cheesetopping1"/>
   <has_topping rdf:resource="#tomatotopping1"/>
+  <has_topping rdf:resource="#cheesetopping1"/>
   <has_topping rdf:resource="#meattopping1"/>
 </Pizza>
 
