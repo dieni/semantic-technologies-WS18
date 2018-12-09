@@ -1,7 +1,12 @@
 How to install Owlready2 on Windows within Anaconda3
 
 1. Install 'Microsoft Visual C++ Build Tools'
-	https://www.microsoft.com/en-us/download/details.aspx?id=48159
+	https://visualstudio.microsoft.com/downloads/
+
+pip install --upgrade setuptools
+
+1b. Maybe install this too
+	conda install -c conda-forge pyhamcrest
 	
 2. Create a new environment 
 	conda create --name myenv
