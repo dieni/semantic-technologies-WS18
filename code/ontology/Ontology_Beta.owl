@@ -1,0 +1,660 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/P2P#"
+     xml:base="http://www.semanticweb.org/P2P"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/P2P/"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#ControllingConnectedWithControlling -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/P2P/#ControllingConnectedWithControlling">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#ControllingConnectedWithNetwork -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/P2P/#ControllingConnectedWithNetwork">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#ControllingControllsConsumingAppliances -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/P2P/#ControllingControllsConsumingAppliances">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#ControllingControllsStorageAppliances -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/P2P/#ControllingControllsStorageAppliances">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/P2P/#Energy_Storage_Appliances"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#ControllingDealsOnTradingPlatform -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/P2P/#ControllingDealsOnTradingPlatform">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/P2P/#Energy_Trading_Platform"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#ProsumerTradesThroughTransaction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/P2P/#ProsumerTradesThroughTransaction">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Prosumer"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/P2P/#Blockchain_Transaction"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#SourceSuppliesControlling -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/P2P/#SourceSuppliesControlling">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#TradingPlatformPerformsOnBlockchain -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/P2P/#TradingPlatformPerformsOnBlockchain">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Trading_Platform"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/P2P/#Blockchain"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#TransactionExecutedOnBlockchain -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/P2P/#TransactionExecutedOnBlockchain">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Blockchain_Transaction"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/P2P/#Blockchain"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Active -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Active">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Storage_Appliances"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Consuming_Begin -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Consuming_Begin">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Consuming_End -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Consuming_End">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Counter -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Counter">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Cryptocurrency -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Cryptocurrency">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Blockchain"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Current -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Current">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Storage_Appliances"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Description -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Description">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Blockchain"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Blockchain_Transaction"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Storage_Appliances"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Trading_Platform"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Prosumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Maximum -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Maximum">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Storage_Appliances"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Name">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Blockchain"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Blockchain_Transaction"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Storage_Appliances"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Trading_Platform"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Prosumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Net_Status -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Net_Status">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Network_Capacity -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Network_Capacity">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Power_Consuming_Average -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Power_Consuming_Average">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Power_Consuming_Current -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Power_Consuming_Current">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Power_Consuming_Maximum -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Power_Consuming_Maximum">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Power_Production_Average -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Power_Production_Average">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Power_Production_Current -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Power_Production_Current">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Power_Production_Maximum -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Power_Production_Maximum">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Power_Receiving_Average -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Power_Receiving_Average">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Power_Receiving_Current -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Power_Receiving_Current">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Power_Receiving_Maximum -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Power_Receiving_Maximum">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Power_Storage -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Power_Storage">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Storage_Appliances"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Power_Supplying_Average -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Power_Supplying_Average">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Power_Supplying_Current -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Power_Supplying_Current">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Power_Supplying_Maximum -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Power_Supplying_Maximum">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Private_Address -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Private_Address">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Prosumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Production_Begin -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Production_Begin">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Production_End -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Production_End">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Public_Address -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Public_Address">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Prosumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Receicing_End -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Receicing_End">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Receiving_Begin -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Receiving_Begin">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Storage_Begin -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Storage_Begin">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Storage_Appliances"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Storage_End -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Storage_End">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Storage_Appliances"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Supplying_Begin -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Supplying_Begin">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Supplying_End -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Supplying_End">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#System_Type -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#System_Type">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Task -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Task">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Transaction_Fee -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Transaction_Fee">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Blockchain_Transaction"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Type -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/P2P/#Type">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Blockchain"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Blockchain_Transaction"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Storage_Appliances"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Energy_Trading_Platform"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Battery -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Battery">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/P2P/#Energy_Storage_Appliances"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Blockchain -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Blockchain"/>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Blockchain_Transaction -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Blockchain_Transaction"/>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Controller_Unit -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Controller_Unit">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Energy_Controlling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Energy_Source -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Energy_Source"/>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Energy_Storage_Appliances -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Energy_Storage_Appliances"/>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Energy_Trading_Platform -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Energy_Trading_Platform"/>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Hydroelectric_Plant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Hydroelectric_Plant">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Microwave -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Microwave">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Network_and_Network_Provider -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Network_and_Network_Provider"/>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Photovoltaic_System -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Photovoltaic_System">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Prosumer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Prosumer"/>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Refrigerator -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Refrigerator">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Smart_Meter -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Smart_Meter">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Subcontroller_Unit -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Subcontroller_Unit">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/P2P/#Energy_Controlling"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Washing_Machine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Washing_Machine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/P2P/#Energy_Consuming_Appliances"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Wind_Turbine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/P2P/#Wind_Turbine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/P2P/#Energy_Source"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/P2P/#Wash01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/P2P/#Wash01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/P2P/#Washing_Machine"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.6.2018-09-06T00:27:41Z) https://github.com/owlcs/owlapi -->
+
