@@ -1,4 +1,4 @@
-"""rest_api_django URL Configuration
+"""tutorial URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 '''
---> this was in the file
+--> was already here
 from django.contrib import admin
 from django.urls import path
 
@@ -22,7 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 '''
-
 from django.conf.urls import url, include
 from rest_framework import routers
 from tutorial.quickstart import views
