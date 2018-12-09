@@ -1,0 +1,4 @@
+Rest API
+conda install -c conda-forge django
+conda install -c conda-forge djangorestframework
+
