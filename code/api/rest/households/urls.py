@@ -1,5 +1,11 @@
-from django.urls import path
+from django.urls import path, include
+from . import views
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('households', views.EnergyControllingView)
 
 urlpatterns = [
-	path('', include('householdes.urls'))
+	# specify all necessary urls here
+	path('', include(router.urls))
 ]
