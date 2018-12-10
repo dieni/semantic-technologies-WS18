@@ -176,7 +176,7 @@ class EnergySource:
                     #print("indexError")
                 i = i + 1
 
-    def getenergyyource(self):
+    def getenergysource(self):
         print("Die Ausgabe von der Energy Consuming Appliance Class")
         print(self.id)
         print(self.name)
