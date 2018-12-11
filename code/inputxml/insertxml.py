@@ -11,6 +11,8 @@ from inputxml.classes import SmartHome
 from inputxml.classes import EnergyConsumingAppliance
 from inputxml.classes import EnergySource
 
+from pathlib import Path
+
 #get path to ontology class
 src_path_layer_up = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 sys.path.append(src_path_layer_up)
