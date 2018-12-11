@@ -1,4 +1,6 @@
-import sys, os
+import sys
+import os
+
 from owlready2 import *
 import xml.dom.minidom as dom
 
@@ -31,9 +33,18 @@ print("fertig")
 #onto_output_path_full = os.path.join(owl_output_path, "Ontology_Beta.owl" )
 #print("+++++++++++++++++++"+onto_output_path_full)
 #onto_path.append(onto_output_path_full)
-owl_output_path = os.path.join(os.path.abspath(''), 'ontology','output')
+"""
+owl_output_path = os.path.join(os.path.abspath(''), 'ontology', 'output')
+print("+++++"+owl_output_path)
+
+owl_output_path_slashturn = owl_output_path.replace("\\", "/")
+
+owl_output_path_slashturn_plusfile = "file://" + owl_output_path_slashturn + "/Ontology_Beta.owl"
+print("-----" + owl_output_path_slashturn_plusfile)
 onto_path.append(owl_output_path)
+"""
 #onto = get_ontology("file://C:/Users/felix/CloudStation/_Studium/_Master_Wirtschaftsinformatik/SEMTEC_Project_GIT/code/ontology/Ontology_Beta.owl")
+#"file://C:/Users/Ifangelium/workspace-pycharm/semanticTechnologiesWS18.git/code/inputxml/ontology/output/Ontology_Beta.owl")
 onto = get_ontology("Ontology_Beta.owl")
 onto.load()
 
@@ -114,4 +125,4 @@ for instance in instances:
         es.getenergysource()
 
 
-onto.save()
+onto.save("Ontology_Beta.owl")
