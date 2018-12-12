@@ -12,7 +12,10 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/home')
 def home():
-    return 'Welcome to our Project about Semantic Technologies!'
+    re = 'Welcome to our Project about Semantic Technologies!' + '<br><br>' + ' <a href="/import">import adoxx models</a>'+ '<br>' + ' <a href="/individuals">Show individuals</a> '
+
+    # return 'Welcome to our Project about Semantic Technologies!'
+    return re
 
 @app.route('/individuals', methods=['GET'])
 def individuals():
