@@ -1,7 +1,6 @@
 from owlready2 import *
 
 class OntologyAPI:
-    
 
     def __init__(self):
         # self.onto = get_ontology('file://C:/Users/Christian/Jottacloud/Documents/Wirtschaftsinformatik/Master/workfolder/semanticTechnologiesWS18.git/code/ontology/Ontology_Beta.owl')
@@ -23,3 +22,7 @@ class OntologyAPI:
     def setclassprosumer(self, id, name, Description, Private_Address, Public_Address):
         self.onto.Prosumer(id, Name = [name], Description = [Description], Private_Address = [Private_Address], Public_Address = [Public_Address])
         self.onto.save('Ontology_Beta.owl')
+
+    def getAllIndividuals(self):
+        # return 'List of individuals'
+        return list(self.onto.individuals())
