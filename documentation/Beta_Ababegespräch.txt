@@ -2,11 +2,24 @@
 
 - 3 Use Cases definieren wo die Blockchain konfiguriert wird.
 -- 1) Modeling of a smart contract. Define when engery should be bought over the blockchain. 
-	In Adoxx Schwellenwerte eingeben ab wann Energy verkauft wird. Stromtarif in Modell definieren.
-	Stromverbrauch über rest api setzen um contract zu triggern.
+	In Adoxx Schwellenwerte
+	api setzen um contract zu triggern.
 
 -- 2) Trust-Certificate on Blockchain. Es wird in Adoxx die Energieklasse deines Gerätes definiert. Sollte dieser überschritten werden,
 	wird ein SmartContract getriggert und ein Garantiefall eingeleitet.
 	Stromverbrauch über rest api setzen um contract zu triggern.
 	
 -- 3) Gleich wie 1 nur für die Verkäuferseite
+
+
+11.1.2019
+Vorgehensweise:
+
+ - Blockchain beschäftigen (Erstellen eines Smart Contracts 
+ -- Wallet
+ -- Schnittstelle zur Blockchain
+ -- Ropsten testnet mit web3.py 
+ -- https://web3py.readthedocs.io/en/stable/index.html
+ 
+ - Adoxx Modelle an die drei Use Cases anpassen
+ -- Eventuell Adoxx
