@@ -7,7 +7,7 @@ class EnergyControlling:
     task = "null"
     type = "null"
 
-    def setenergycontrolling(self, id, name, instance):
+    def setenergycontrollingfromxml(self, id, name, instance):
             self.id = id
             self.name = name
             children = instance.getElementsByTagName("attribute")

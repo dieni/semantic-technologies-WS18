@@ -10,7 +10,7 @@ class EnergyConsumingAppliance:
     active = "null"
     type = "null"
 
-    def setenergyconsuminappliance(self, id, name, instance):
+    def setenergyconsuminappliancefromxml(self, id, name, instance):
             self.id = id
             self.name = name
             children = instance.getElementsByTagName("attribute")

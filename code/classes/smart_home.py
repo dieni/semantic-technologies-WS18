@@ -1,7 +1,7 @@
 class SmartHome:
     id = 0
 
-    def setsmarthome(self, model):
+    def setsmarthomefromxml(self, model):
         self.id = model[0].getAttribute("id")
 
 

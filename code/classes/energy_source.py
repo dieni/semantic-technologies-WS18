@@ -15,7 +15,7 @@ class EnergySource:
     active = "null"
     type = "null"
 
-    def setenergysource(self, id, name, instance):
+    def setenergysourcefromxml(self, id, name, instance):
             self.id = id
             self.name = name
             children = instance.getElementsByTagName("attribute")
