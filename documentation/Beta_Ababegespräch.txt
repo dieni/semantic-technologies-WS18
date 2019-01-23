@@ -11,8 +11,8 @@
 	
 -- 3) Gleich wie 1 nur für die Verkäuferseite
 
-
 11.1.2019
+
 Vorgehensweise:
 
  - Blockchain beschäftigen (Erstellen eines Smart Contracts 
