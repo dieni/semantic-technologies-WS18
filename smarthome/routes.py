@@ -1,5 +1,7 @@
 from smarthome import app
-from Flask import request
+from flask import request
+from smarthome import adoxx_import
+from smarthome import ontology_handler
 
 '''
     Ressource:
@@ -18,8 +20,10 @@ def home():
     return "Home"
 
 
-ai = AdoxxImporter()
-ont = Ontology()
+# create importer connection
+ai = adoxx_import.AdoxxImporter()
+# creat ontology connection
+ont = ontology_handler.OntologyAPI()
 
 
 @app.route('/api/prosumers/', methods=['GET', 'POST', 'PUT'])
@@ -37,15 +41,19 @@ def prosumers():
         # Upload of an adoxx model.
 
         # The information from the model will be extracted and return as lists
-            ec_list = ai.importEnergyConsumption(request.data)
+        list_p = ai.import_prosumer(request.data)
+        # list_ec = ai.import_energy_controlling(request.data)
+        # list_es = ai.import_energy_controlling(request.data)
+        # list_esc = ai.import_energy_consumption_appliances(request.data)
         # add information to ontogy
-            for ec in ec_list:
-                ont.addEC(ec)
-        pass
+        #  for ec in ec_list:
+        #       ont.addEC(ec)
+
+        list_p[0].getprosumer
 
     elif request.method == 'PUT':
-        # update a prosumer
         pass
+        # update a prosumer
 
     else:
         return "List of prosumers"
