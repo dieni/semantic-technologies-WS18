@@ -1,4 +1,9 @@
-from smarthome.models import *
+# from smarthome.models import *
+
+
+class Contract:
+    abi = {}
+    address = str
 
 
 class Blockchain:

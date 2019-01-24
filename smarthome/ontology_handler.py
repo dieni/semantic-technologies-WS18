@@ -1,5 +1,5 @@
 from owlready2 import *
-from smarthome.models import *
+# from smarthome.models import *
 
 
 # TODO: Check relations! How do we know a energy source belongs to a specific prosumer?
