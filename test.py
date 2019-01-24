@@ -29,7 +29,7 @@ def deploy_contract(contract_interface):
     signed = acct.signTransaction(construct_txn)
 
     tx_hash = w3.eth.sendRawTransaction(signed.rawTransaction)
-    return tx_hash, contract.abi
+    return tx_hash, contract_interface['abi']
 
 
 if __name__ == '__main__':
@@ -39,6 +39,8 @@ if __name__ == '__main__':
 
     # separate main file and link file
     main_contract = contracts.pop("test.sol:helloWorld")
+
+    print(main_contract['abi'])
 
     transaction_address, api = deploy_contract(main_contract)
 

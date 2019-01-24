@@ -41,11 +41,11 @@ def prosumers():
 
         for energysource in list_es:
             ont.insert_energy_source(energysource)
-            
+
         for energycontroller in list_ec:
             ont.insert_energy_controlling(energycontroller)
 
-
+        ont.commit()
 
         # TODO: Add all information to ontology
 
