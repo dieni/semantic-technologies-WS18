@@ -28,14 +28,24 @@ def prosumers():
 
         # The information from the model will be extracted and return as lists
         list_p = adoI.import_prosumer(request.data)
-        # list_ec = ai.import_energy_controlling(request.data)
-        # list_es = ai.import_energy_source(request.data)
-        # list_esc = ai.import_energy_consumption_appliances(request.data)
+        list_ec = adoI.import_energy_controlling(request.data)
+        list_es = adoI.import_energy_source(request.data)
+        list_eca = adoI.import_energy_consumption_appliances(request.data)
 
         # Add information to ontogy
-
         for prosumer in list_p:
             ont.insert_prosumer(prosumer)
+
+        for eca in list_eca:
+            ont.insert_energy_consuming_appliances(eca)
+
+        for energysource in list_es:
+            ont.insert_energy_source(energysource)
+            
+        for energycontroller in list_ec:
+            ont.insert_energy_controlling(energycontroller)
+
+
 
         # TODO: Add all information to ontology
 
