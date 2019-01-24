@@ -7,7 +7,7 @@ class AdoxxImporter:
 
     def import_prosumer(self, xml):
         list = []
-        baum = dom.parse(xml)
+        baum = dom.parseString(xml)
         # get all instances
         instances = baum.getElementsByTagName("instance")
         for instance in instances:
@@ -41,7 +41,7 @@ class AdoxxImporter:
 
     def import_energy_consumption_appliances(self, xml):
         list = []
-        baum = dom.parse(xml)
+        baum = dom.parseString(xml)
         # get all instances
         instances = baum.getElementsByTagName("instance")
         for instance in instances:
@@ -85,7 +85,7 @@ class AdoxxImporter:
     def import_energy_controlling(self, xml):
 
         list = []
-        baum = dom.parse(xml)
+        baum = dom.parseString(xml)
         # get all instances
         instances = baum.getElementsByTagName("instance")
 
@@ -124,7 +124,7 @@ class AdoxxImporter:
     def import_energy_source(self, xml):
 
         list = []
-        baum = dom.parse(xml)
+        baum = dom.parseString(xml)
         # get all instances
         instances = baum.getElementsByTagName("instance")
 
@@ -133,8 +133,8 @@ class AdoxxImporter:
             namepara = instance.getAttribute("name")
             if instance.getAttribute("class") == "Energy Source":
                 es = EnergySource()
-                es.id = id
-                es.name = name
+                es.id = idpara
+                es.name = namepara
                 children = instance.getElementsByTagName("attribute")
                 i = 0
                 while i < children.length:
@@ -173,4 +173,3 @@ class AdoxxImporter:
                     i = i + 1
                 list.append(es)
         return list
-

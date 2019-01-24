@@ -62,24 +62,23 @@ class EnergySource:
 
 
 class EnergyControlling:
-            id = 0
-            name = "null"
-            description = "null"
-            systemType = "null"
-            counter = 0
-            task = "null"
-            type = "null"
+    id = 0
+    name = "null"
+    description = "null"
+    systemType = "null"
+    counter = 0
+    task = "null"
+    type = "null"
 
-
-            def getenergycontrolling(self):
-                print("Die Ausgabe von der Energy Controlling Class")
-                print(self.id)
-                print(self.name)
-                print(self.description)
-                print(self.systemType)
-                print(self.counter)
-                print(self.task)
-                print(self.type)
+    def getenergycontrolling(self):
+        print("Die Ausgabe von der Energy Controlling Class")
+        print(self.id)
+        print(self.name)
+        print(self.description)
+        print(self.systemType)
+        print(self.counter)
+        print(self.task)
+        print(self.type)
 
 
 class EnergyConsumingAppliance:
@@ -93,7 +92,6 @@ class EnergyConsumingAppliance:
     consumingEnd = "01.01.1900"
     active = "null"
     type = "null"
-
 
     def getenergyconsumingappliance(self):
         print("Die Ausgabe von der Energy Consuming Appliance Class")

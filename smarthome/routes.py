@@ -1,10 +1,9 @@
-from smarthome import app
+from smarthome import app, ont, adoI
 from flask import request
-from smarthome import adoxx_import
-
-
+from smarthome.adoxx_import import AdoxxImporter
 from smarthome.ontology_handler import Ontology
 from smarthome.blockchain_handler import Blockchain
+import json
 
 
 @app.route('/')
@@ -12,14 +11,8 @@ from smarthome.blockchain_handler import Blockchain
 def home():
     return "Home"
 
-# create importer connection
-ai = adoxx_import.AdoxxImporter()
-# ai = AdoxxImporter()
-ont = Ontology()
-bc = Blockchain()
 
-
-@app.route('/api/prosumers/', methods=['GET', 'POST', 'PUT'])
+@app.route('/api/prosumers', methods=['GET', 'POST', 'PUT'])
 def prosumers():
     '''
         prosumers / smart homes
@@ -33,30 +26,30 @@ def prosumers():
         # Add a new prosumer.
         # Upload of an adoxx model.
 
-        # TODO: The information from the model will be extracted and return as lists
-        list_p = ai.import_prosumer(request.data)
-		# list_ec = ai.import_energy_controlling(request.data)
-        # list_es = ai.import_energy_controlling(request.data)
+        # The information from the model will be extracted and return as lists
+        list_p = adoI.import_prosumer(request.data)
+        # list_ec = ai.import_energy_controlling(request.data)
+        # list_es = ai.import_energy_source(request.data)
         # list_esc = ai.import_energy_consumption_appliances(request.data)
-        # add information to ontogy
-        #  for ec in ec_list:
-        #       ont.addEC(ec)
 
-        list_p[0].getprosumer
+        # Add information to ontogy
 
+        for prosumer in list_p:
+            ont.insert_prosumer(prosumer)
 
-        # TODO: Add information to ontogy
-            # Check if the prosumer is already in the ontology. If he or she is skip prosumer.
-            # for ec in ec_list:
-                #contract_id = bc.create_contract_consuming_appliances()
+        # TODO: Add all information to ontology
+
+        # Check if the prosumer is already in the ontology. If he or she is skip prosumer.
+        # for ec in ec_list:
+        #contract_id = bc.create_contract_consuming_appliances()
 
         # Maybe TODO: create smart contracts for the devices
-            # for ec in ec_list:
-            #     ont.addEC(ec)
+        # for ec in ec_list:
+        #     ont.addEC(ec)
 
         # TODO: Check smart contracts
 
-        pass
+        return "Model inserted"
 
     elif request.method == 'PUT':
         # update a prosumer
@@ -76,7 +69,7 @@ def prosumer():
     return "Specific Prosumer "
 
 
-@app.route('/api/prosumers/<id>/contracts/')
+@app.route('/api/prosumers/<prosumer_id>/contracts/')
 def contracts():
     '''
         GET: Returns a list of all smart contracts a prosumer has.
@@ -87,11 +80,11 @@ def contracts():
     return "List of Smart contracts"
 
 
-@app.route('/api/prosumers/<id>/devices/')
+@app.route('/api/prosumers/<prosumer_id>/devices/')
 def devices():
     pass
 
 
-@app.route('/api/prosumers/<id>/devices/<id>')
+@app.route('/api/prosumers/<prosumer_id>/devices/<device_id>')
 def device():
     pass
