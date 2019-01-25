@@ -1,9 +1,6 @@
 from smarthome import app, ont, adoI
 from flask import request
-from smarthome.adoxx_import import AdoxxImporter
-from smarthome.ontology_handler import Ontology
-from smarthome.blockchain_handler import Blockchain
-import json
+from smarthome.blockchain_handler import BlockchainHandler
 
 
 @app.route('/')
@@ -27,37 +24,41 @@ def prosumers():
         # Upload of an adoxx model.
 
         # The information from the model will be extracted and return as lists
-        list_p = adoI.import_prosumer(request.data)
-        list_ec = adoI.import_energy_controlling(request.data)
+        # list_p = adoI.import_prosumer(request.data)
+        # list_ec = adoI.import_energy_controlling(request.data)
+
+        # Only one prosumer per model!
+        prosumer = adoI.import_prosumer(request.data)[0]
+
+        # There is only one energy controller per smarthome
+        energycontroller = adoI.import_energy_controlling(request.data)[0]
+
         list_es = adoI.import_energy_source(request.data)
         list_eca = adoI.import_energy_consumption_appliances(request.data)
 
+        # TODO: Check if Information is already in the ontology
+
         # Add information to ontogy
-        for prosumer in list_p:
-            ont.insert_prosumer(prosumer)
+        ont.insert_prosumer(prosumer)
+
+        ont_ec = ont.insert_energy_controlling(energycontroller)
 
         for eca in list_eca:
-            ont.insert_energy_consuming_appliances(eca)
+            ont.insert_energy_consuming_appliances(eca, ont_ec)
 
         for energysource in list_es:
             ont.insert_energy_source(energysource)
 
-        for energycontroller in list_ec:
-            ont.insert_energy_controlling(energycontroller)
-
         ont.commit()
 
-        # TODO: Add all information to ontology
+        # TODO: create smart contracts for the devices
+        privatekey = 'B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE'
+        bh = BlockchainHandler(privatekey)
+        tx_hash, abi = bh.deploy_contract_helloWorld()
+        # for _ in list_eca:
+        #     tx_hash = bh.deploy_contract_helloWorld()
 
-        # Check if the prosumer is already in the ontology. If he or she is skip prosumer.
-        # for ec in ec_list:
-        #contract_id = bc.create_contract_consuming_appliances()
-
-        # Maybe TODO: create smart contracts for the devices
-        # for ec in ec_list:
-        #     ont.addEC(ec)
-
-        # TODO: Check smart contracts
+        # TODO: Add tx_hash and abi to device
 
         return "Model inserted"
 
@@ -65,6 +66,8 @@ def prosumers():
         # update a prosumer
 
         # TODO: Check smart contracts
+        privatekey = 'B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE'
+        bh = BlockchainHandler(privatekey)
 
         pass
         # update a prosumer

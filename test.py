@@ -5,6 +5,16 @@ from solc import compile_files, compile_source
 wallet_private_key = 'B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE'
 # wallet_address = '0xBed036b94d57c46F3c4F16cD5a10D6668d7FDc3a'
 
+source = '''
+            pragma solidity ^0.4.25;
+    
+            contract helloWorld {
+
+                function getMessage() public view returns(string memory){
+                    return "Hello World!";
+                }
+            }
+        '''
 
 # Connect to test net
 w3 = Web3(HTTPProvider(
@@ -29,23 +39,23 @@ def deploy_contract(contract_interface):
     signed = acct.signTransaction(construct_txn)
 
     tx_hash = w3.eth.sendRawTransaction(signed.rawTransaction)
-    return tx_hash, contract_interface['abi']
+    return tx_hash.hex(), contract_interface['abi']
 
 
 if __name__ == '__main__':
 
     # compile all contract files
-    contracts = compile_files(["test.sol"])
+    # contracts = compile_files(["test.sol"])
+    contracts = compile_source(source)
 
     # separate main file and link file
-    main_contract = contracts.pop("test.sol:helloWorld")
-
-    print(main_contract['abi'])
+    # main_contract = contracts.pop("test.sol:helloWorld")
+    main_contract = contracts.pop('<stdin>:helloWorld')
 
     transaction_address, api = deploy_contract(main_contract)
 
     print("Transaction ID")
-    print(transaction_address.hex())
+    print(transaction_address)
 
     print('ABI')
     print(api)

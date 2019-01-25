@@ -2,6 +2,7 @@ from flask import Flask
 from smarthome.ontology_handler import Ontology
 from smarthome.adoxx_import import AdoxxImporter
 
+
 adoI = AdoxxImporter()
 ont = Ontology()
 app = Flask(__name__)
