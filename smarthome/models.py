@@ -1,8 +1,3 @@
-from owlready2 import *
-
-ontology_path = 'smarthome/Ontology2.owl'
-onto = get_ontology(ontology_path)
-
 
 class SmartHome:
     id = 0

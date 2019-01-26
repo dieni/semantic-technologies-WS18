@@ -33,21 +33,31 @@ def prosumers():
         # There is only one energy controller per smarthome
         energycontroller = adoI.import_energy_controlling(request.data)[0]
 
-        list_es = adoI.import_energy_source(request.data)
+        # There is only one energy Source
+        energysource = adoI.import_energy_source(request.data)[0]
+
+        # List of Consumption Appliances
         list_eca = adoI.import_energy_consumption_appliances(request.data)
 
         # TODO: Check if Information is already in the ontology
 
         # Add information to ontogy
-        ont.insert_prosumer(prosumer)
-
+        # order of insert is important because of relationship insert
+        # 1. prosumer 2. controlling 3. source
+        # 4. Appliances
+        ont_p = ont.insert_prosumer(prosumer)
         ont_ec = ont.insert_energy_controlling(energycontroller)
+        ont_es = ont.insert_energy_source(energysource)
 
+        # set Relation ProsumerOwnsControlling
+        ont_p.ProsumerOwnsControlling = [ont_ec]
+        # set Relation ControllingReceivesFromSource
+        ont_ec.ControllingReceivesFromSource = [ont_es]
+
+        # insert alle consuming appliances and set relation Energysource -> Consuming Appliances
+        # happens in insert methode
         for eca in list_eca:
             ont.insert_energy_consuming_appliances(eca, ont_ec)
-
-        for energysource in list_es:
-            ont.insert_energy_source(energysource)
 
         ont.commit()
 
