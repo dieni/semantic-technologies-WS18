@@ -1,5 +1,6 @@
 from owlready2 import *
 from smarthome.models import Prosumer, EnergyConsumingAppliance, EnergyControlling, EnergySource
+from smarthome.contracts import SmartContract
 
 # TODO: Check relations! How do we know a energy source belongs to a specific prosumer?
 
@@ -86,11 +87,9 @@ class Ontology:
                                   Private_Address=[prosumer.privateaddress],
                                   Public_Address=[prosumer.publicaddress])
 
-    def insert_contract_ECA(self, contract, eca):
-        contract = self.onto.Contract(Contract_Address=[contract.tx_hash], Description=[
-                                      "Contract for eca: " + str(contract.device_id)], Type=["Warranty"])
-
-        eca.ConsumingAppliancehasSmartContract.append(contract)
+    def insert_contract_ECA(self, tx_hash, eca):
+        return self.onto.Smart_Contract(
+            "sc" + eca.name, Contract_Address=[tx_hash])
 
     def commit(self):
         self.onto.save(self.ontology_path)
@@ -143,7 +142,7 @@ class Ontology:
         pass
 
     def get_eca_from_prosumer(self, prosumer):
-        return list(list(self.onto[str(prosumer)].ProsumerOwnsControlling)[
+        return list(list(self.onto[str(prosumer.name)].ProsumerOwnsControlling)[
             0].ControllingControllsConsumingAppliances)
 
     def getAllIndividuals(self):

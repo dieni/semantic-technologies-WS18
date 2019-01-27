@@ -347,36 +347,84 @@
   <rdfs:subClassOf rdf:resource="#Energy_Source"/>
 </owl:Class>
 
-<Prosumer rdf:about="#obj.48817">
+<Prosumer rdf:about="#obj.48600">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <ProsumerOwnsControlling rdf:resource="#obj.48802"/>
+  <ProsumerOwnsControlling rdf:resource="#obj.47603"/>
   <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Josep Volts Smart Home</Description>
   <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Joseph Volt</Name>
   <Private_Address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0xc5s3df9s71d2cfs598</Private_Address>
   <Public_Address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0xc6s4df5s64d1cfs300</Public_Address>
 </Prosumer>
 
-<Energy_Controlling rdf:about="#obj.48802">
+<Energy_Controlling rdf:about="#obj.47603">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <ControllingControllsConsumingAppliances rdf:resource="#obj.48805"/>
-  <ControllingControllsConsumingAppliances rdf:resource="#obj.48808"/>
-  <ControllingControllsConsumingAppliances rdf:resource="#obj.48811"/>
-  <ControllingReceivesFromSource rdf:resource="#obj.48814"/>
+  <ControllingControllsConsumingAppliances rdf:resource="#obj.47619"/>
+  <ControllingControllsConsumingAppliances rdf:resource="#obj.47627"/>
+  <ControllingControllsConsumingAppliances rdf:resource="#obj.47631"/>
+  <ControllingReceivesFromSource rdf:resource="#obj.47635"/>
   <Counter rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5000</Counter>
   <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Controller Central Unit</Description>
-  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Controlling</Name>
+  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Controlling-47603</Name>
   <System_Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WattWatcher</System_Type>
   <Task rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Controll Energy</Task>
   <Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Controller Unit</Type>
 </Energy_Controlling>
 
-<Energy_Source rdf:about="#obj.48814">
+<Energy_Consuming_Appliances rdf:about="#obj.47619">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#Smart_Contract"/>
+  <ConsumingAppliancehasSmartContract rdf:resource="#scobj.47619"/>
+  <Active rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True</Active>
+  <Consuming_Begin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_Begin>
+  <Consuming_End rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:11 15:00:00</Consuming_End>
+  <Contract_Address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0x9341bebaf4023b1527d879f8ff13b8e2e87d2a3969fede7c92a70c6b6370aa16</Contract_Address>
+  <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bosch</Description>
+  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Consuming Appliances-47619</Name>
+  <Power_Consuming_Average rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</Power_Consuming_Average>
+  <Power_Consuming_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</Power_Consuming_Current>
+  <Power_Consuming_Maximum rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.5</Power_Consuming_Maximum>
+  <Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Refrigerator</Type>
+</Energy_Consuming_Appliances>
+
+<Energy_Consuming_Appliances rdf:about="#obj.47627">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#Smart_Contract"/>
+  <ConsumingAppliancehasSmartContract rdf:resource="#scobj.47627"/>
+  <Active rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True</Active>
+  <Consuming_Begin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_Begin>
+  <Consuming_End rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_End>
+  <Contract_Address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0xbf6d5fe61138319b3bc26d9f1c22b0755439246da3725ad6b601dc6265b77886</Contract_Address>
+  <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Miele</Description>
+  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Consuming Appliances-47627</Name>
+  <Power_Consuming_Average rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</Power_Consuming_Average>
+  <Power_Consuming_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</Power_Consuming_Current>
+  <Power_Consuming_Maximum rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.35</Power_Consuming_Maximum>
+  <Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Washing Machine</Type>
+</Energy_Consuming_Appliances>
+
+<Energy_Consuming_Appliances rdf:about="#obj.47631">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#Smart_Contract"/>
+  <ConsumingAppliancehasSmartContract rdf:resource="#scobj.47631"/>
+  <Active rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True</Active>
+  <Consuming_Begin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_Begin>
+  <Consuming_End rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_End>
+  <Contract_Address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0x550502f1e18b82f181d549ce04d135e3daa8a40cbdbbc25f7418163a722315c9</Contract_Address>
+  <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sharp</Description>
+  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Consuming Appliances-47631</Name>
+  <Power_Consuming_Average rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</Power_Consuming_Average>
+  <Power_Consuming_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</Power_Consuming_Current>
+  <Power_Consuming_Maximum rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.15</Power_Consuming_Maximum>
+  <Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Microwave</Type>
+</Energy_Consuming_Appliances>
+
+<Energy_Source rdf:about="#obj.47635">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   <Active rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True</Active>
   <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Photovoltaic System on the roof</Description>
-  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Source</Name>
+  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Source-47635</Name>
   <Power_Production_Average rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8000</Power_Production_Average>
-  <Power_Production_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">500</Power_Production_Current>
+  <Power_Production_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6000</Power_Production_Current>
   <Power_Production_Maximum rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10000</Power_Production_Maximum>
   <Power_Supplying_Average rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3000</Power_Supplying_Average>
   <Power_Supplying_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">400</Power_Supplying_Current>
@@ -388,44 +436,20 @@
   <Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Photovoltaic System</Type>
 </Energy_Source>
 
-<Energy_Consuming_Appliances rdf:about="#obj.48805">
+<Smart_Contract rdf:about="#scobj.47619">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <Active rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True</Active>
-  <Consuming_Begin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_Begin>
-  <Consuming_End rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:11 15:00:00</Consuming_End>
-  <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bosch</Description>
-  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Consuming Appliances 1</Name>
-  <Power_Consuming_Average rdf:datatype="http://www.w3.org/2001/XMLSchema#string">300</Power_Consuming_Average>
-  <Power_Consuming_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">600</Power_Consuming_Current>
-  <Power_Consuming_Maximum rdf:datatype="http://www.w3.org/2001/XMLSchema#string">500</Power_Consuming_Maximum>
-  <Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Refrigerator</Type>
-</Energy_Consuming_Appliances>
+  <Contract_Address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0x62fb3c9f316a62d49cfef329ec5bd5841446a6f210f819ec2cd57a0af2f83909</Contract_Address>
+</Smart_Contract>
 
-<Energy_Consuming_Appliances rdf:about="#obj.48808">
+<Smart_Contract rdf:about="#scobj.47627">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <Active rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True</Active>
-  <Consuming_Begin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_Begin>
-  <Consuming_End rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_End>
-  <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Miele</Description>
-  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Consuming Appliances 2</Name>
-  <Power_Consuming_Average rdf:datatype="http://www.w3.org/2001/XMLSchema#string">200</Power_Consuming_Average>
-  <Power_Consuming_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">300</Power_Consuming_Current>
-  <Power_Consuming_Maximum rdf:datatype="http://www.w3.org/2001/XMLSchema#string">350</Power_Consuming_Maximum>
-  <Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Washing Machine</Type>
-</Energy_Consuming_Appliances>
+  <Contract_Address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0xa3730b6bbef806883b0c1ce5889b4034f141c383706326c596c375dafba76355</Contract_Address>
+</Smart_Contract>
 
-<Energy_Consuming_Appliances rdf:about="#obj.48811">
+<Smart_Contract rdf:about="#scobj.47631">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <Active rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True</Active>
-  <Consuming_Begin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_Begin>
-  <Consuming_End rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_End>
-  <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sharp</Description>
-  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Consuming Appliances 3</Name>
-  <Power_Consuming_Average rdf:datatype="http://www.w3.org/2001/XMLSchema#string">50</Power_Consuming_Average>
-  <Power_Consuming_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">100</Power_Consuming_Current>
-  <Power_Consuming_Maximum rdf:datatype="http://www.w3.org/2001/XMLSchema#string">150</Power_Consuming_Maximum>
-  <Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Microwave</Type>
-</Energy_Consuming_Appliances>
+  <Contract_Address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0x01d6a9627c4bf2f139725c9c53c37978b9abb96aada910f3a381504a4d40e0f9</Contract_Address>
+</Smart_Contract>
 
 
 </rdf:RDF>

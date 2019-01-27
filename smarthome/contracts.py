@@ -1,4 +1,5 @@
 class SmartContract:
+    id = 1
 
     def __init__(self, tx_hash, abi, device_id):
         self.tx_hash = tx_hash

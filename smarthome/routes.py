@@ -2,6 +2,7 @@ from smarthome import app, onto, adoI
 from flask import request, jsonify
 from smarthome.blockchain_handler import BlockchainHandler
 from smarthome.contracts import SmartContract
+from smarthome.ontology_handler import Ontology
 import time
 
 
@@ -29,69 +30,44 @@ def prosumers():
         # Only one prosumer per model!
         prosumer = adoI.import_prosumer(request.data)[0]
 
-        # There is only one energy controller per smarthome
-        energycontroller = adoI.import_energy_controlling(request.data)[0]
+        if not onto.get_prosumer(prosumer.id):
 
-        # There is only one energy Source
-        energysource = adoI.import_energy_source(request.data)[0]
+            # There is only one energy controller per smarthome
+            energycontroller = adoI.import_energy_controlling(request.data)[0]
 
-        # List of Consumption Appliances
-        list_eca = []
-        list_eca = adoI.import_energy_consumption_appliances(request.data)
+            # There is only one energy Source
+            energysource = adoI.import_energy_source(request.data)[0]
 
-        # TODO: Check if Information is already in the ontology
+            # List of Consumption Appliances
+            list_eca = []
+            list_eca = adoI.import_energy_consumption_appliances(request.data)
 
-        # Add information to ontogy
-        # order of insert is important because of relationship insert
-        # 1. prosumer 2. controlling 3. source
-        # 4. Appliances
-        ont_p = onto.insert_prosumer(prosumer)
-        ont_ec = onto.insert_energy_controlling(energycontroller)
-        ont_es = onto.insert_energy_source(energysource)
+            # TODO: Check if Information is already in the ontology
 
-        # set Relation ProsumerOwnsControlling
-        ont_p.ProsumerOwnsControlling = [ont_ec]
-        # set Relation ControllingReceivesFromSource
-        ont_ec.ControllingReceivesFromSource = [ont_es]
+            # Add information to ontogy
+            # order of insert is important because of relationship insert
+            # 1. prosumer 2. controlling 3. source
+            # 4. Appliances
+            ont_p = onto.insert_prosumer(prosumer)
+            ont_ec = onto.insert_energy_controlling(energycontroller)
+            ont_es = onto.insert_energy_source(energysource)
 
-        # insert alle consuming appliances and set relation Energysource -> Consuming Appliances
-        # happens in insert methode
-        for eca in list_eca:
-            ont_eca = onto.insert_energy_consuming_appliances(eca)
-            ont_ec.ControllingControllsConsumingAppliances.append(ont_eca)
+            # set Relation ProsumerOwnsControlling
+            ont_p.ProsumerOwnsControlling = [ont_ec]
+            # set Relation ControllingReceivesFromSource
+            ont_ec.ControllingReceivesFromSource = [ont_es]
 
-        onto.commit()
+            # insert alle consuming appliances and set relation Energysource -> Consuming Appliances
+            # happens in insert methode
+            for eca in list_eca:
+                ont_eca = onto.insert_energy_consuming_appliances(eca)
+                ont_ec.ControllingControllsConsumingAppliances.append(ont_eca)
 
-        # create smart contracts for the devices
-        # TODO: privatekey = prosumer.privateaddress
+            onto.commit()
 
-        privatekey = 'B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE'
-        bh = BlockchainHandler(privatekey)
+            return "Prosumer inserted!"
 
-        string = ""
-        onto_ecas = onto.get_eca_from_prosumer(ont_p.name)
-
-        for eca in onto_ecas:
-            string = string + str(eca.name) + "\n"
-
-        onto.commit()
-        return string
-
-        contracts = []
-        for eca in onto_ecas:
-            bh = BlockchainHandler(privatekey)
-            tx_hash, abi = bh.deploy_contract_ECA(eca)
-            contract = SmartContract(tx_hash, abi, eca.name)
-
-            # save contract in ontology
-
-            # append as dict so we can serialize it to json later
-            contracts.append(contract.todict())
-            time.sleep(40)  # We need to wait befor we deploy the next contract
-
-        # Add contract tx_hash to eca
-
-        return jsonify(contracts)
+        return "Error: Prosumer exists already!"
 
     elif request.method == 'PUT':
         # update a prosumer
@@ -140,10 +116,48 @@ def contracts():
     return "List of Smart contracts"
 
 
+@app.route('/prosumers/<prosumer_id>/deploycontracts')
+def deployContracts(prosumer_id):
+
+    # create smart contracts for the devices
+    # TODO: privatekey = prosumer.privateaddress
+
+    privatekey = 'B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE'
+    bh = BlockchainHandler(privatekey)
+
+    prosumer = onto.get_prosumer(str(prosumer_id))
+    onto_ecas = onto.get_eca_from_prosumer(prosumer)
+
+    contracts = []
+    for eca in onto_ecas:
+        bh = BlockchainHandler(privatekey)
+        tx_hash, abi = bh.deploy_contract_ECA(eca)
+        contract = SmartContract(tx_hash, abi, eca.name)
+
+        # save contract in ontology
+        c = onto.insert_contract_ECA(tx_hash, eca)
+        eca.ConsumingAppliancehasSmartContract = [c]
+
+        # append as dict so we can serialize it to json later
+        contracts.append(contract.todict())
+        # We need to wait befor we deploy the next contract
+        time.sleep(50)
+
+    onto.commit()
+
+    # Add contract tx_hash to eca
+
+    return jsonify(contracts)
+
+
 @app.route('/test')
 def test():
     # return str(len(onto.get_ecas()))
-    return "asd"
+    onto = Ontology()
+    prosumer = onto.get_prosumer("obj.48600")
+    ecas = onto.get_eca_from_prosumer(prosumer)
+
+    return prosumer.name
 
 # @app.route('/api/prosumers/<prosumer_id>/devices/')
 # def devices():
