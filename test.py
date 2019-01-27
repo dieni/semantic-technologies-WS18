@@ -1,61 +1,47 @@
-from web3 import Web3, HTTPProvider
-from solc import compile_files, compile_source
-
-
-wallet_private_key = 'B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE'
-# wallet_address = '0xBed036b94d57c46F3c4F16cD5a10D6668d7FDc3a'
-
-source = '''
-            pragma solidity ^0.4.25;
-    
-            contract helloWorld {
-
-                function getMessage() public view returns(string memory){
-                    return "Hello World!";
-                }
-            }
-        '''
-
-# Connect to test net
-w3 = Web3(HTTPProvider(
-    'https://ropsten.infura.io/v3/d15fc63d1e504344be7954571d2d813d'))
-
-acct = w3.eth.account.privateKeyToAccount(wallet_private_key)
-
-
-def deploy_contract(contract_interface):
-    # Instantiate and deploy contract
-    contract = w3.eth.contract(
-        abi=contract_interface['abi'],
-        bytecode=contract_interface['bin']
-    )
-
-    construct_txn = contract.constructor().buildTransaction({
-        'from': acct.address,
-        'nonce': w3.eth.getTransactionCount(acct.address),
-        'gas': 1728712,
-        'gasPrice': w3.toWei('21', 'gwei')})
-
-    signed = acct.signTransaction(construct_txn)
-
-    tx_hash = w3.eth.sendRawTransaction(signed.rawTransaction)
-    return tx_hash.hex(), contract_interface['abi']
-
+from owlready2 import *
 
 if __name__ == '__main__':
 
-    # compile all contract files
-    # contracts = compile_files(["test.sol"])
-    contracts = compile_source(source)
+    ontology_path = "smarthome/Ontology_Beta.owl"
+    onto = get_ontology(ontology_path)
+    onto.load()
 
-    # separate main file and link file
-    # main_contract = contracts.pop("test.sol:helloWorld")
-    main_contract = contracts.pop('<stdin>:helloWorld')
+    # UC2
+    print("from energy source object obj.47635")
+    print(onto["obj.47635"].Power_Production_Current)
 
-    transaction_address, api = deploy_contract(main_contract)
+    # print("Get all ECA")
+    # print(onto.search(type=onto.Energy_Consuming_Appliances))
 
-    print("Transaction ID")
-    print(transaction_address)
+    # -------------------------------------------------------------------------
+    print("Get current energy consumption of all ECAs")
+    ecas = onto.search(type=onto.Energy_Consuming_Appliances)
+    ppc = 0
+    for eca in ecas:
+        ppc += int(eca.Power_Consuming_Current[0])
+    print(ppc)
+    # -------------------------------------------------------------------------
+    # UC3
+    print("Get avg energy consumption of all ECAs")
+    ecas = onto.search(type=onto.Energy_Consuming_Appliances)
+    ppc = 0
+    for eca in ecas:
+        ppc += int(eca.Power_Consuming_Average[0])
+    print(ppc)
+    # -------------------------------------------------------------------------
+    # UC1
+    print("Get current energy consumption from eca")
+    print(int(onto["obj.47631"].Power_Consuming_Current[0]))
 
-    print('ABI')
-    print(api)
+    print("Get current energy consumption from eca")
+    # print(int(onto["obj.47631"].Power_Consuming_Maximum[0])) # wrong data type int needed!!
+
+    print("Get all prosumer")
+    prosumers = onto.search(type=onto.Prosumer)
+    print(prosumers[0])
+
+    print("Get all properties of an object")
+    print(list(onto["obj.48600"].get_properties()))
+
+    for prop in list(onto["obj.48600"].get_properties()):
+        print(prop.Name)

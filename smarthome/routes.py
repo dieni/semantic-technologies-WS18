@@ -1,4 +1,4 @@
-from smarthome import app, ont, adoI
+from smarthome import app, onto, adoI
 from flask import request, jsonify
 from smarthome.blockchain_handler import BlockchainHandler
 from smarthome.contracts import SmartContract
@@ -47,9 +47,9 @@ def prosumers():
         # order of insert is important because of relationship insert
         # 1. prosumer 2. controlling 3. source
         # 4. Appliances
-        ont_p = ont.insert_prosumer(prosumer)
-        ont_ec = ont.insert_energy_controlling(energycontroller)
-        ont_es = ont.insert_energy_source(energysource)
+        ont_p = onto.insert_prosumer(prosumer)
+        ont_ec = onto.insert_energy_controlling(energycontroller)
+        ont_es = onto.insert_energy_source(energysource)
 
         # set Relation ProsumerOwnsControlling
         ont_p.ProsumerOwnsControlling = [ont_ec]
@@ -59,9 +59,9 @@ def prosumers():
         # insert alle consuming appliances and set relation Energysource -> Consuming Appliances
         # happens in insert methode
         for eca in list_eca:
-            ont.insert_energy_consuming_appliances(eca, ont_ec)
+            onto.insert_energy_consuming_appliances(eca, ont_ec)
 
-        ont.commit()
+        onto.commit()
 
         # create smart contracts for the devices
         # TODO: privatekey = prosumer.privateaddress
@@ -76,7 +76,7 @@ def prosumers():
             contract = SmartContract(tx_hash, abi, eca.id)
             # append as dict so we can serialize it to json later
             contracts.append(contract.todict())
-            time.sleep(30)  # We need to wait befor we deploy the next contract
+            time.sleep(40)  # We need to wait befor we deploy the next contract
 
         return jsonify(contracts)
 
@@ -90,12 +90,12 @@ def prosumers():
         list_eca = adoI.import_energy_consumption_appliances(request.data)
 
         # get prosumer private key
-        # TODO: privatekey = ont.get_privatekey(prosumer)
+        # TODO: privatekey = onto.get_privatekey(prosumer)
         privatekey = 'B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE'
         bh = BlockchainHandler(privatekey)
 
         # get all contracts from ontology for ecas
-        # TODO: contracts = ont.get_eca_contracts(prosumer)
+        # TODO: contracts = onto.get_eca_contracts(prosumer)
 
         # run contracts
         # for eca in list_eca:
@@ -108,16 +108,14 @@ def prosumers():
         return "ecas and contract msgs"
 
     else:
-        # TODO: prosumers = onto.get_prosumers()
-
-        return jsonify(ont.getAllIndividuals())
-        return "List of prosumers"
+        return jsonify(onto.get_prosumers())
 
 
-@app.route('/api/prosumers/<id>')
-def prosumer():
+@app.route('/api/prosumers/<prosumer_id>')
+def prosumer(prosumer_id):
+    return onto.get_prosumer(prosumer_id)
 
-    return "Specific Prosumer "
+    return "Specific Prosumer"
 
 
 @app.route('/api/prosumers/<prosumer_id>/contracts/')
@@ -126,7 +124,7 @@ def contracts():
         GET: Returns a list of all smart contracts a prosumer has.
     '''
 
-    #contracts = ont.get_contracts()
+    #contracts = onto.get_contracts()
 
     return "List of Smart contracts"
 

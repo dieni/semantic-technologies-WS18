@@ -25,19 +25,19 @@ class Ontology:
                                        Type=[es.type],
                                        Description=[es.description],
                                        Power_Supplying_Maximum=[
-                                         es.powerSupplyingMaximum],
+                                           es.powerSupplyingMaximum],
                                        Power_Supplying_Average=[
-                                         es.powerSupplyingAverage],
+                                           es.powerSupplyingAverage],
                                        Power_Supplying_Current=[
-                                         es.powerSupplyingCurrent],
+                                           es.powerSupplyingCurrent],
                                        Supplying_Begin=[es.supplyingBegin],
                                        Supplying_End=[es.supplyingEnd],
                                        Power_Production_Maximum=[
-                                         es.powerProductionMaximum],
+                                           es.powerProductionMaximum],
                                        Power_Production_Average=[
-                                         es.powerProductionAverage],
+                                           es.powerProductionAverage],
                                        Power_Production_Current=[
-                                         es.powerProductionCurrent],
+                                           es.powerProductionCurrent],
                                        Production_Begin=[es.productionBegin],
                                        Production_End=[es.productionEnd],
                                        Active=[es.active])
@@ -85,9 +85,22 @@ class Ontology:
     def get_prosumers(self):
         '''
         Get a list of all prosumer
+
+        Returns: Names of prosumers
         '''
-        # TODO:
-        pass
+        prosumers = self.onto.search(type=self.onto.Prosumer)
+
+        output = []
+        for p in prosumers:
+            x = {
+                "name": str(p.Name[0]),
+                "id": str(p)
+            }
+            output.append(x)
+        return output
+
+    def get_prosumer(id):
+        prosumer[str(id)]
 
     def add_contract2prosumer(self):
         pass
@@ -99,9 +112,6 @@ class Ontology:
         pass
 
     def get_energy_consuming_appliances(self):
-        pass
-
-    def get_prosumer(self):
         pass
 
     def getAllIndividuals(self):

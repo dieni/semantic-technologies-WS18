@@ -4,6 +4,6 @@ from smarthome.adoxx_import import AdoxxImporter
 
 
 adoI = AdoxxImporter()
-ont = Ontology()
+onto = Ontology()
 app = Flask(__name__)
 from smarthome import routes  # must be after app instantiation
