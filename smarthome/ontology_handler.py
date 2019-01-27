@@ -42,25 +42,41 @@ class Ontology:
                                        Production_End=[es.productionEnd],
                                        Active=[es.active])
 
-    def insert_energy_consuming_appliances(self, eca, ec):
-        eca = self.onto.Energy_Consuming_Appliances(eca.id,
-                                                    Name=[eca.name],
-                                                    Type=[eca.type],
-                                                    Description=[
-                                                        eca.description],
-                                                    Power_Consuming_Maximum=[
-                                                        eca.powerConsumingMaximum],
-                                                    Power_Consuming_Average=[
-                                                        eca.powerConsumingAverage],
-                                                    Power_Consuming_Current=[
-                                                        eca.powerConsumingCurrent],
-                                                    Consuming_Begin=[
-                                                        eca.consumingBegin],
-                                                    Consuming_End=[
-                                                        eca.consumingEnd],
-                                                    Active=[eca.active])
+    def insert_energy_consuming_appliances(self, eca):
+        # eca = self.onto.Energy_Consuming_Appliances(eca.id,
+        #                                             Name=[eca.name],
+        #                                             Type=[eca.type],
+        #                                             Description=[
+        #                                                 eca.description],
+        #                                             Power_Consuming_Maximum=[
+        #                                                 eca.powerConsumingMaximum],
+        #                                             Power_Consuming_Average=[
+        #                                                 eca.powerConsumingAverage],
+        #                                             Power_Consuming_Current=[
+        #                                                 eca.powerConsumingCurrent],
+        #                                             Consuming_Begin=[
+        #                                                 eca.consumingBegin],
+        #                                             Consuming_End=[
+        #                                                 eca.consumingEnd],
+        #                                             Active=[eca.active])
 
-        ec.ControllingControllsConsumingAppliances.append(eca)
+        # ec.ControllingControllsConsumingAppliances.append(eca)
+        return self.onto.Energy_Consuming_Appliances(eca.id,
+                                                     Name=[eca.name],
+                                                     Type=[eca.type],
+                                                     Description=[
+                                                         eca.description],
+                                                     Power_Consuming_Maximum=[
+                                                         eca.powerConsumingMaximum],
+                                                     Power_Consuming_Average=[
+                                                         eca.powerConsumingAverage],
+                                                     Power_Consuming_Current=[
+                                                         eca.powerConsumingCurrent],
+                                                     Consuming_Begin=[
+                                                         eca.consumingBegin],
+                                                     Consuming_End=[
+                                                         eca.consumingEnd],
+                                                     Active=[eca.active])
 
     def insert_prosumer(self, prosumer):
 
@@ -69,6 +85,12 @@ class Ontology:
                                   Description=[prosumer.description],
                                   Private_Address=[prosumer.privateaddress],
                                   Public_Address=[prosumer.publicaddress])
+
+    def insert_contract_ECA(self, contract, eca):
+        contract = self.onto.Contract(Contract_Address=[contract.tx_hash], Description=[
+                                      "Contract for eca: " + str(contract.device_id)], Type=["Warranty"])
+
+        eca.ConsumingAppliancehasSmartContract.append(contract)
 
     def commit(self):
         self.onto.save(self.ontology_path)
@@ -94,13 +116,22 @@ class Ontology:
         for p in prosumers:
             x = {
                 "name": str(p.Name[0]),
-                "id": str(p)
+                "urn": str(p.name)
             }
             output.append(x)
+
         return output
 
-    def get_prosumer(id):
-        prosumer[str(id)]
+    def get_prosumer(self, id):
+        return self.onto[str(id)]
+
+    def get_prosumer_dict(self, urn):
+        output = {}
+
+        for prop in list(self.onto[str(urn)].get_properties()):
+            for value in prop[self.onto[str(urn)]]:
+                output[str(prop.name)] = str(value)
+        return output
 
     def add_contract2prosumer(self):
         pass
@@ -111,10 +142,14 @@ class Ontology:
     def get_energy_source(self):
         pass
 
-    def get_energy_consuming_appliances(self):
-        pass
+    def get_eca_from_prosumer(self, prosumer):
+        return list(list(self.onto[str(prosumer)].ProsumerOwnsControlling)[
+            0].ControllingControllsConsumingAppliances)
 
     def getAllIndividuals(self):
         # return 'List of individuals'
 
         return list(self.onto.individuals())
+
+    def get_ecas(self):
+        return self.onto.search(type=self.onto.Energy_Consuming_Appliances)

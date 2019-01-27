@@ -26,9 +26,6 @@ def prosumers():
         # Upload of an adoxx model.
 
         # The information from the model will be extracted and return as lists
-        # list_p = adoI.import_prosumer(request.data)
-        # list_ec = adoI.import_energy_controlling(request.data)
-
         # Only one prosumer per model!
         prosumer = adoI.import_prosumer(request.data)[0]
 
@@ -39,6 +36,7 @@ def prosumers():
         energysource = adoI.import_energy_source(request.data)[0]
 
         # List of Consumption Appliances
+        list_eca = []
         list_eca = adoI.import_energy_consumption_appliances(request.data)
 
         # TODO: Check if Information is already in the ontology
@@ -59,7 +57,8 @@ def prosumers():
         # insert alle consuming appliances and set relation Energysource -> Consuming Appliances
         # happens in insert methode
         for eca in list_eca:
-            onto.insert_energy_consuming_appliances(eca, ont_ec)
+            ont_eca = onto.insert_energy_consuming_appliances(eca)
+            ont_ec.ControllingControllsConsumingAppliances.append(ont_eca)
 
         onto.commit()
 
@@ -69,14 +68,28 @@ def prosumers():
         privatekey = 'B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE'
         bh = BlockchainHandler(privatekey)
 
+        string = ""
+        onto_ecas = onto.get_eca_from_prosumer(ont_p.name)
+
+        for eca in onto_ecas:
+            string = string + str(eca.name) + "\n"
+
+        onto.commit()
+        return string
+
         contracts = []
-        for eca in list_eca:
+        for eca in onto_ecas:
             bh = BlockchainHandler(privatekey)
             tx_hash, abi = bh.deploy_contract_ECA(eca)
-            contract = SmartContract(tx_hash, abi, eca.id)
+            contract = SmartContract(tx_hash, abi, eca.name)
+
+            # save contract in ontology
+
             # append as dict so we can serialize it to json later
             contracts.append(contract.todict())
             time.sleep(40)  # We need to wait befor we deploy the next contract
+
+        # Add contract tx_hash to eca
 
         return jsonify(contracts)
 
@@ -111,14 +124,12 @@ def prosumers():
         return jsonify(onto.get_prosumers())
 
 
-@app.route('/api/prosumers/<prosumer_id>')
-def prosumer(prosumer_id):
-    return onto.get_prosumer(prosumer_id)
-
-    return "Specific Prosumer"
+@app.route('/api/prosumers/<urn>')
+def prosumer(urn):
+    return jsonify(onto.get_prosumer_dict(urn))
 
 
-@app.route('/api/prosumers/<prosumer_id>/contracts/')
+@app.route('/api/prosumers/<prosumer_id>/contracts')
 def contracts():
     '''
         GET: Returns a list of all smart contracts a prosumer has.
@@ -128,6 +139,11 @@ def contracts():
 
     return "List of Smart contracts"
 
+
+@app.route('/test')
+def test():
+    # return str(len(onto.get_ecas()))
+    return "asd"
 
 # @app.route('/api/prosumers/<prosumer_id>/devices/')
 # def devices():

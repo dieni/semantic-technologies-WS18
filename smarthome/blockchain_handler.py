@@ -44,8 +44,10 @@ class BlockchainHandler:
 
             Returns: Transaction hash, abi
         '''
+        # contract = ECAContract(
+        #     eca.id, eca.name, eca.powerConsumingMaximum)
         contract = ECAContract(
-            eca.id, eca.name, eca.powerConsumingMaximum)
+            eca.name, eca.Name, eca.Power_Consuming_Maximum)
 
         contracts = compile_source(contract.source)
 
