@@ -1,0 +1,431 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.semanticweb.org/P2P"
+         xmlns="http://www.semanticweb.org/P2P#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/P2P"/>
+
+<owl:ObjectProperty rdf:about="#ConsumingAppliancehasSmartContract">
+  <rdfs:domain rdf:resource="#Energy_Consuming_Appliances"/>
+  <rdfs:range rdf:resource="#Smart_Contract"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ConsumingAppliancehasSmartContract</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Energy_Consuming_Appliances"/>
+
+<owl:Class rdf:about="#Smart_Contract"/>
+
+<owl:ObjectProperty rdf:about="#ControllingConnectedWithControlling">
+  <rdfs:domain rdf:resource="#Energy_Controlling"/>
+  <rdfs:range rdf:resource="#Energy_Controlling"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ControllingConnectedWithControlling</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Energy_Controlling"/>
+
+<owl:ObjectProperty rdf:about="#ControllingControllsConsumingAppliances">
+  <rdfs:domain rdf:resource="#Energy_Controlling"/>
+  <rdfs:range rdf:resource="#Energy_Consuming_Appliances"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ControllingControllsConsumingAppliances</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#ControllingControllsStorageAppliances">
+  <rdfs:domain rdf:resource="#Energy_Controlling"/>
+  <rdfs:range rdf:resource="#Energy_Storage_Appliances"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ControllingControllsStorageAppliances</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Energy_Storage_Appliances"/>
+
+<owl:ObjectProperty rdf:about="#ControllingReceivesFromSource">
+  <rdfs:domain rdf:resource="#Energy_Controlling"/>
+  <rdfs:range rdf:resource="#Energy_Source"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ControllingReceivesFromSource</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Energy_Source"/>
+
+<owl:ObjectProperty rdf:about="#ProsumerOwnsControlling">
+  <rdfs:domain rdf:resource="#Prosumer"/>
+  <rdfs:range rdf:resource="#Energy_Controlling"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ProsumerOwnsControlling</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Prosumer"/>
+
+<owl:ObjectProperty rdf:about="#ProsumerTradesThroughTransaction">
+  <rdfs:domain rdf:resource="#Prosumer"/>
+  <rdfs:range rdf:resource="#Smart_Contract"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ProsumerDeploysSmartContract</rdfs:label>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#Abi">
+  <rdfs:domain rdf:resource="#Smart_Contract"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abi</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Active">
+  <rdfs:domain rdf:resource="#Energy_Consuming_Appliances"/>
+  <rdfs:domain rdf:resource="#Energy_Storage_Appliances"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Active</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Consuming_Begin">
+  <rdfs:domain rdf:resource="#Energy_Consuming_Appliances"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Consuming_Begin</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Consuming_End">
+  <rdfs:domain rdf:resource="#Energy_Consuming_Appliances"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Consuming_End</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Contract_Address">
+  <rdfs:domain rdf:resource="#Smart_Contract"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Contract_Address</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Counter">
+  <rdfs:domain rdf:resource="#Energy_Controlling"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Counter</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Cryptocurrency">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cryptocurrency</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Current">
+  <rdfs:domain rdf:resource="#Energy_Storage_Appliances"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Current</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Description">
+  <rdfs:domain rdf:resource="#Energy_Consuming_Appliances"/>
+  <rdfs:domain rdf:resource="#Energy_Controlling"/>
+  <rdfs:domain rdf:resource="#Energy_Source"/>
+  <rdfs:domain rdf:resource="#Energy_Storage_Appliances"/>
+  <rdfs:domain rdf:resource="#Prosumer"/>
+  <rdfs:domain rdf:resource="#Smart_Contract"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Description</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Maximum">
+  <rdfs:domain rdf:resource="#Energy_Storage_Appliances"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Maximum</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Name">
+  <rdfs:domain rdf:resource="#Energy_Consuming_Appliances"/>
+  <rdfs:domain rdf:resource="#Energy_Controlling"/>
+  <rdfs:domain rdf:resource="#Energy_Source"/>
+  <rdfs:domain rdf:resource="#Energy_Storage_Appliances"/>
+  <rdfs:domain rdf:resource="#Prosumer"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Name</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Net_Status">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Net_Status</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Network_Capacity">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Network_Capacity</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Power_Consuming_Average">
+  <rdfs:domain rdf:resource="#Energy_Consuming_Appliances"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Power_Consuming_Average</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Power_Consuming_Current">
+  <rdfs:domain rdf:resource="#Energy_Consuming_Appliances"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Power_Consuming_Current</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Power_Consuming_Maximum">
+  <rdfs:domain rdf:resource="#Energy_Consuming_Appliances"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Power_Consuming_Maximum</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Power_Production_Average">
+  <rdfs:domain rdf:resource="#Energy_Source"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Power_Production_Average</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Power_Production_Current">
+  <rdfs:domain rdf:resource="#Energy_Source"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Power_Production_Current</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Power_Production_Maximum">
+  <rdfs:domain rdf:resource="#Energy_Source"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Power_Production_Maximum</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Power_Receiving_Average">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Power_Receiving_Average</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Power_Receiving_Current">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Power_Receiving_Current</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Power_Receiving_Maximum">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Power_Receiving_Maximum</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Power_Storage">
+  <rdfs:domain rdf:resource="#Energy_Storage_Appliances"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Power_Storage</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Power_Supplying_Average">
+  <rdfs:domain rdf:resource="#Energy_Source"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Power_Supplying_Average</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Power_Supplying_Current">
+  <rdfs:domain rdf:resource="#Energy_Source"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Power_Supplying_Current</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Power_Supplying_Maximum">
+  <rdfs:domain rdf:resource="#Energy_Source"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Power_Supplying_Maximum</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Private_Address">
+  <rdfs:domain rdf:resource="#Prosumer"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Private_Address</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Production_Begin">
+  <rdfs:domain rdf:resource="#Energy_Source"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Production_Begin</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Production_End">
+  <rdfs:domain rdf:resource="#Energy_Source"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Production_End</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Public_Address">
+  <rdfs:domain rdf:resource="#Prosumer"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public_Address</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Receicing_End">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Receiving_End</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Receiving_Begin">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Receiving_Begin</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Storage_Begin">
+  <rdfs:domain rdf:resource="#Energy_Storage_Appliances"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Storage_Begin</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Storage_End">
+  <rdfs:domain rdf:resource="#Energy_Storage_Appliances"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Storage_End</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Supplying_Begin">
+  <rdfs:domain rdf:resource="#Energy_Source"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Supplying_Begin</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Supplying_End">
+  <rdfs:domain rdf:resource="#Energy_Source"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Supplying_End</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#System_Type">
+  <rdfs:domain rdf:resource="#Energy_Controlling"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">System_Type</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Task">
+  <rdfs:domain rdf:resource="#Energy_Controlling"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Task</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Transaction_Fee">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transaction_Fee</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Type">
+  <rdfs:domain rdf:resource="#Energy_Consuming_Appliances"/>
+  <rdfs:domain rdf:resource="#Energy_Controlling"/>
+  <rdfs:domain rdf:resource="#Energy_Source"/>
+  <rdfs:domain rdf:resource="#Energy_Storage_Appliances"/>
+  <rdfs:domain rdf:resource="#Smart_Contract"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Type</rdfs:label>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#Battery">
+  <rdfs:subClassOf rdf:resource="#Energy_Storage_Appliances"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Controller_Unit">
+  <rdfs:subClassOf rdf:resource="#Energy_Controlling"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Hydroelectric_Plant">
+  <rdfs:subClassOf rdf:resource="#Energy_Source"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Microwave">
+  <rdfs:subClassOf rdf:resource="#Energy_Consuming_Appliances"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Photovoltaic_System">
+  <rdfs:subClassOf rdf:resource="#Energy_Source"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Refrigerator">
+  <rdfs:subClassOf rdf:resource="#Energy_Consuming_Appliances"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Smart_Meter">
+  <rdfs:subClassOf rdf:resource="#Energy_Controlling"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Subcontroller_Unit">
+  <rdfs:subClassOf rdf:resource="#Energy_Controlling"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Washing_Machine">
+  <rdfs:subClassOf rdf:resource="#Energy_Consuming_Appliances"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Wind_Turbine">
+  <rdfs:subClassOf rdf:resource="#Energy_Source"/>
+</owl:Class>
+
+<Prosumer rdf:about="#obj.48600">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <ProsumerOwnsControlling rdf:resource="#obj.47603"/>
+  <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Josep Volts Smart Home</Description>
+  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Joseph Volt</Name>
+  <Private_Address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0xc5s3df9s71d2cfs598</Private_Address>
+  <Public_Address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0xc6s4df5s64d1cfs300</Public_Address>
+</Prosumer>
+
+<Energy_Controlling rdf:about="#obj.47603">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <ControllingControllsConsumingAppliances rdf:resource="#obj.47619"/>
+  <ControllingControllsConsumingAppliances rdf:resource="#obj.47627"/>
+  <ControllingControllsConsumingAppliances rdf:resource="#obj.47631"/>
+  <ControllingReceivesFromSource rdf:resource="#obj.47635"/>
+  <Counter rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5000</Counter>
+  <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Controller Central Unit</Description>
+  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Controlling-47603</Name>
+  <System_Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WattWatcher</System_Type>
+  <Task rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Controll Energy</Task>
+  <Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Controller Unit</Type>
+</Energy_Controlling>
+
+<Energy_Source rdf:about="#obj.47635">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <Active rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True</Active>
+  <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Photovoltaic System on the roof</Description>
+  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Source-47635</Name>
+  <Power_Production_Average rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8000</Power_Production_Average>
+  <Power_Production_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6000</Power_Production_Current>
+  <Power_Production_Maximum rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10000</Power_Production_Maximum>
+  <Power_Supplying_Average rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3000</Power_Supplying_Average>
+  <Power_Supplying_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">400</Power_Supplying_Current>
+  <Power_Supplying_Maximum rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5000</Power_Supplying_Maximum>
+  <Production_Begin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:10:12 15:00:00</Production_Begin>
+  <Production_End rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:12:12 15:00:00</Production_End>
+  <Supplying_Begin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Supplying_Begin>
+  <Supplying_End rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 17:00:00</Supplying_End>
+  <Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Photovoltaic System</Type>
+</Energy_Source>
+
+<Energy_Consuming_Appliances rdf:about="#obj.47619">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <Active rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True</Active>
+  <Consuming_Begin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_Begin>
+  <Consuming_End rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:11 15:00:00</Consuming_End>
+  <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bosch</Description>
+  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Consuming Appliances-47619</Name>
+  <Power_Consuming_Average rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</Power_Consuming_Average>
+  <Power_Consuming_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</Power_Consuming_Current>
+  <Power_Consuming_Maximum rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.5</Power_Consuming_Maximum>
+  <Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Refrigerator</Type>
+</Energy_Consuming_Appliances>
+
+<Energy_Consuming_Appliances rdf:about="#obj.47627">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <Active rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True</Active>
+  <Consuming_Begin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_Begin>
+  <Consuming_End rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_End>
+  <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Miele</Description>
+  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Consuming Appliances-47627</Name>
+  <Power_Consuming_Average rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</Power_Consuming_Average>
+  <Power_Consuming_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</Power_Consuming_Current>
+  <Power_Consuming_Maximum rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.35</Power_Consuming_Maximum>
+  <Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Washing Machine</Type>
+</Energy_Consuming_Appliances>
+
+<Energy_Consuming_Appliances rdf:about="#obj.47631">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <Active rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True</Active>
+  <Consuming_Begin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_Begin>
+  <Consuming_End rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018:11:12 15:00:00</Consuming_End>
+  <Description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sharp</Description>
+  <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy Consuming Appliances-47631</Name>
+  <Power_Consuming_Average rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</Power_Consuming_Average>
+  <Power_Consuming_Current rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</Power_Consuming_Current>
+  <Power_Consuming_Maximum rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.15</Power_Consuming_Maximum>
+  <Type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Microwave</Type>
+</Energy_Consuming_Appliances>
+
+
+</rdf:RDF>
