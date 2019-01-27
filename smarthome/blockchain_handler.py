@@ -1,6 +1,6 @@
 from web3 import Web3, HTTPProvider
 from solc import compile_files, compile_source
-from smarthome.contracts import ECAContract, HelloWorld
+from smarthome.contracts import ECAContract, HelloWorld, SmartContract
 
 
 class BlockchainHandler:
@@ -37,23 +37,21 @@ class BlockchainHandler:
         tx_hash = self.w3.eth.sendRawTransaction(signed.rawTransaction)
         return str(tx_hash.hex()), contract_interface['abi']
 
-    # def deploy_contract_ECA(self, eca):
-    #     '''
-    #         Deploy a energy consuming appliance contract
-    #         Define variables in the solidity contract and deploy it on the blockchain.
+    def deploy_contract_ECA(self, eca):
+        '''
+            Deploy a energy consuming appliance contract
+            Define variables in the solidity contract and deploy it on the blockchain.
 
-    #         Returns: Transaction hash, abi
-    #     '''
-    #     contract = ECAContract(
-    #         eca.id, eca.name, eca.powerConsumingMaximum)
+            Returns: Transaction hash, abi
+        '''
+        contract = ECAContract(
+            eca.id, eca.name, eca.powerConsumingMaximum)
 
-    #     source = contract.get_source()
+        contracts = compile_source(contract.source)
 
-    #     main_contract = contracts.pop('<stdin>:eca')
+        main_contract = contracts.pop('<stdin>:Frigerator')
 
-    #     transaction_address, api = deploy_contract(main_contract)
-
-    #     return "contract id"
+        return self.deploy_contract(main_contract)
 
     def deploy_contract_helloWorld(self):
         '''
@@ -71,3 +69,11 @@ class BlockchainHandler:
         main_contract = contracts.pop('<stdin>:helloWorld')
 
         return self.deploy_contract(main_contract)
+
+    def run_eca_contract(self, c, eca):
+        '''
+
+        '''
+        contract = self.w3.eth.contract(address=c.tx_hash, abi=c.abi)
+
+        return contract.functions.getMessage(eca.powerConsumingCurrent).call()

@@ -1,6 +1,8 @@
 from smarthome import app, ont, adoI
-from flask import request
+from flask import request, jsonify
 from smarthome.blockchain_handler import BlockchainHandler
+from smarthome.contracts import SmartContract
+import time
 
 
 @app.route('/')
@@ -15,8 +17,8 @@ def prosumers():
         prosumers / smart homes
 
         GET:    Get a list of all prosumers
-        POST:   Create a new prosumer
-        PUT:    Update a prousmer
+        POST:   Create a new prosumer and smart contracts --> upload of an adoxx model
+        PUT:    Run smart contracts with new model values and see if contract triggers --> upload of an adoxx model
     '''
 
     if request.method == 'POST':
@@ -61,28 +63,54 @@ def prosumers():
 
         ont.commit()
 
-        # TODO: create smart contracts for the devices
+        # create smart contracts for the devices
+        # TODO: privatekey = prosumer.privateaddress
+
         privatekey = 'B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE'
         bh = BlockchainHandler(privatekey)
-        tx_hash, abi = bh.deploy_contract_helloWorld()
-        # for _ in list_eca:
-        #     tx_hash = bh.deploy_contract_helloWorld()
 
-        # TODO: Add tx_hash and abi to device
+        contracts = []
+        for eca in list_eca:
+            bh = BlockchainHandler(privatekey)
+            tx_hash, abi = bh.deploy_contract_ECA(eca)
+            contract = SmartContract(tx_hash, abi, eca.id)
+            # append as dict so we can serialize it to json later
+            contracts.append(contract.todict())
+            time.sleep(30)  # We need to wait befor we deploy the next contract
 
-        return "Model inserted"
+        return jsonify(contracts)
 
     elif request.method == 'PUT':
         # update a prosumer
 
         # TODO: Check smart contracts
+
+        # retriev all ecas from model
+        prosumer = adoI.import_prosumer(request.data)[0]
+        list_eca = adoI.import_energy_consumption_appliances(request.data)
+
+        # get prosumer private key
+        # TODO: privatekey = ont.get_privatekey(prosumer)
         privatekey = 'B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE'
         bh = BlockchainHandler(privatekey)
 
-        pass
-        # update a prosumer
+        # get all contracts from ontology for ecas
+        # TODO: contracts = ont.get_eca_contracts(prosumer)
+
+        # run contracts
+        # for eca in list_eca:
+        #     for c in contracts:
+        #         if c.device_id == eca.id:
+        #             bh.run_eca_contract(c, eca)
+
+        # TODO: create json
+
+        return "ecas and contract msgs"
 
     else:
+        # TODO: prosumers = onto.get_prosumers()
+
+        return jsonify(ont.getAllIndividuals())
         return "List of prosumers"
 
 
@@ -103,11 +131,11 @@ def contracts():
     return "List of Smart contracts"
 
 
-@app.route('/api/prosumers/<prosumer_id>/devices/')
-def devices():
-    pass
+# @app.route('/api/prosumers/<prosumer_id>/devices/')
+# def devices():
+#     pass
 
 
-@app.route('/api/prosumers/<prosumer_id>/devices/<device_id>')
-def device():
-    pass
+# @app.route('/api/prosumers/<prosumer_id>/devices/<device_id>')
+# def device():
+#     pass

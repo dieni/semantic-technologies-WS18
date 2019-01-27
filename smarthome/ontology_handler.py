@@ -73,6 +73,22 @@ class Ontology:
     def commit(self):
         self.onto.save(self.ontology_path)
 
+    def get_eca_contracts(self, prosumer):
+        '''
+        Get all the eca contracts from a prosumer.
+
+        Return: List of contracts
+        '''
+        # TODO
+        pass
+
+    def get_prosumers(self):
+        '''
+        Get a list of all prosumer
+        '''
+        # TODO:
+        pass
+
     def add_contract2prosumer(self):
         pass
 
