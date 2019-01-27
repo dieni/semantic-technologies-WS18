@@ -5,10 +5,58 @@ from owlready2 import *
 
 onto = get_ontology("file://C:/Users/Ifangelium/workspace-pycharm/semanticTechnologiesWS18.git/code/ontology/Ontology_Beta.owl")
 onto.load()
-print(list(onto.classes()))
+# print(list(onto.classes()))
 # print(onto.search(iri="Energy*"))
+'''
+    # UC2
+    print("from energy source object obj.47635")
+    print(onto["obj.47635"].Power_Production_Current)
 
-print 
+    # print("Get all ECA")
+    # print(onto.search(type=onto.Energy_Consuming_Appliances))
+
+    # -------------------------------------------------------------------------
+    print("Get current energy consumption of all ECAs")
+    ecas = onto.search(type=onto.Energy_Consuming_Appliances)
+    ppc = 0
+    for eca in ecas:
+        ppc += int(eca.Power_Consuming_Current[0])
+    print(ppc)
+    # -------------------------------------------------------------------------
+    # UC3
+    print("Get avg energy consumption of all ECAs")
+    ecas = onto.search(type=onto.Energy_Consuming_Appliances)
+    ppc = 0
+    for eca in ecas:
+        ppc += int(eca.Power_Consuming_Average[0])
+    print(ppc)
+    # -------------------------------------------------------------------------
+    # UC1
+    print("Get current energy consumption from eca")
+    print(int(onto["obj.47631"].Power_Consuming_Current[0]))
+
+    print("Get current energy consumption from eca")
+    # print(int(onto["obj.47631"].Power_Consuming_Maximum[0])) # wrong data type int needed!!
+
+    print("Get all prosumer")
+    prosumers = onto.search(type=onto.Prosumer)
+    print(prosumers[0])
+
+    print("Get all properties of an object")
+    print(list(onto["obj.48600"].get_properties()))
+
+    print(onto["obj.48600"].Name)
+'''
+
+# print("Get all properties of an object")
+# print(list(onto["obj.48600"].get_properties()))
+# print(onto["obj.48600"].Name)
+
+
+print("Get avg energy consumption of all ECAs")
+ecas = onto.search(type=onto.Energy_Consuming_Appliances)
+for eca in ecas:
+   print(eca.name)
 
 
 #Energy Source
@@ -43,9 +91,9 @@ print
 #print(myprosumer.Private_Address)
 #print(onto.trans01.Transaction_Fee)
 
-print(list(onto.individuals()))
+# print(list(onto.individuals()))
 
-print(onto.EnergyConsumingAppliances47619.Name)
+# print(onto.EnergyConsumingAppliances47619.Name)
 
 
 # Export to OWL file:

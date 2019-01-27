@@ -1,12 +1,12 @@
 <?xml version="1.1" encoding="UTF-8"?>
-<adoxml xmlns="@boc-eu.com/boc-is/adonis.model.document;1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="@boc-eu.com/boc-is/adonis.model.document;1 adoxmlmodel.xsd" version="" date="27.01.2019" time="16:03:10" database="adoxxdb" username="Joseph Volt" adoversion="5.1">
+<adoxml xmlns="@boc-eu.com/boc-is/adonis.model.document;1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="@boc-eu.com/boc-is/adonis.model.document;1 adoxmlmodel.xsd" version="" date="27.01.2019" time="17:57:00" database="adoxxdb" username="Joseph Volt" adoversion="5.1">
 <models>
 <model id="47601" name="Model 2 - Verkauf und ein Gerät Garantiefall" version="" modeltype="Energy Blockchain Trading Library" libtype="bp" applib="Energy Blockchain Trading Dynamic Library">
 <modelattributes>
 <attribute name="Version number" type="STRING"></attribute>
 <attribute name="Author" type="STRING">Joseph Volt</attribute>
 <attribute name="Creation date" type="STRING">17.11.2018, 13:27</attribute>
-<attribute name="Date last changed" type="STRING">27.01.2019, 16:02:41</attribute>
+<attribute name="Date last changed" type="STRING">27.01.2019, 17:55:16</attribute>
 <attribute name="Last user" type="STRING">Joseph Volt</attribute>
 <attribute name="Keywords" type="STRING"></attribute>
 <attribute name="Comment" type="STRING"></attribute>
@@ -15,18 +15,18 @@
 <attribute name="Reviewed on" type="STRING"></attribute>
 <attribute name="Reviewed by" type="STRING"></attribute>
 <attribute name="Description" type="STRING"></attribute>
-<attribute name="Number of objects and relations" type="INTEGER">10</attribute>
+<attribute name="Number of objects and relations" type="INTEGER">11</attribute>
 <attribute name="World area" type="STRING">w:20.27cm h:28.95cm minw:5cm minh:5cm</attribute>
 <attribute name="Grid" type="STRING"></attribute>
 <attribute name="Zoom" type="INTEGER">100</attribute>
-<attribute name="Viewable area" type="STRING">VIEW representation:graphic&#10;GRAPHIC x:-16 y:47 w:695 h:556 scale:1&#10;TABLE&#10;</attribute>
+<attribute name="Viewable area" type="STRING">VIEW representation:graphic&#10;GRAPHIC x:-16 y:75 w:695 h:556 scale:1&#10;TABLE&#10;</attribute>
 <attribute name="Current mode" type="STRING"></attribute>
 <attribute name="Base name" type="STRING">Model 2 - Verkauf und ein Gerät Garantiefall</attribute>
 <attribute name="Access state" type="ENUMERATION">write</attribute>
 <attribute name="Current page layout" type="STRING"></attribute>
 <attribute name="Connector marks" type="STRING"></attribute>
 <attribute name="Type" type="STRING">Energy Blockchain Trading Library</attribute>
-<attribute name="Change counter" type="INTEGER">273</attribute>
+<attribute name="Change counter" type="INTEGER">326</attribute>
 <attribute name="Font size" type="INTEGER">0</attribute>
 <attribute name="Context of version" type="STRING"></attribute>
 </modelattributes>
@@ -40,7 +40,7 @@
 <attribute name="Type" type="ENUMERATION">Controller Unit</attribute>
 </instance>
 <instance id="obj.47619" class="Energy Consuming Appliances" name="Energy Consuming Appliances 1">
-<attribute name="Position" type="STRING">NODE x:5.5cm y:14cm index:2</attribute>
+<attribute name="Position" type="STRING">NODE x:6cm y:14cm index:2</attribute>
 <attribute name="External tool coupling" type="STRING"></attribute>
 <attribute name="Description" type="LONGSTRING">Bosch</attribute>
 <attribute name="Power Consuming Maximum" type="DOUBLE">500</attribute>
@@ -64,7 +64,7 @@
 <attribute name="Type" type="ENUMERATION">Washing Machine</attribute>
 </instance>
 <instance id="obj.47631" class="Energy Consuming Appliances" name="Energy Consuming Appliances 3">
-<attribute name="Position" type="STRING">NODE x:13cm y:14cm index:6</attribute>
+<attribute name="Position" type="STRING">NODE x:12.5cm y:14cm index:6</attribute>
 <attribute name="External tool coupling" type="STRING"></attribute>
 <attribute name="Description" type="LONGSTRING">Sharp</attribute>
 <attribute name="Power Consuming Maximum" type="DOUBLE">150</attribute>
@@ -76,7 +76,7 @@
 <attribute name="Type" type="ENUMERATION">Microwave</attribute>
 </instance>
 <instance id="obj.47635" class="Energy Source" name="Energy Source">
-<attribute name="Position" type="STRING">NODE x:9cm y:4.5cm index:8</attribute>
+<attribute name="Position" type="STRING">NODE x:9cm y:5.5cm index:8</attribute>
 <attribute name="External tool coupling" type="STRING"></attribute>
 <attribute name="Power Supplying Maximum" type="DOUBLE">5000</attribute>
 <attribute name="Power Supplying Average" type="DOUBLE">3000</attribute>
@@ -93,11 +93,11 @@
 <attribute name="Type" type="ENUMERATION">Photovoltaic System</attribute>
 </instance>
 <instance id="obj.48600" class="Prosumer" name="Johannes Watt">
-<attribute name="Position" type="STRING">NODE x:3cm y:5cm index:10</attribute>
+<attribute name="Position" type="STRING">NODE x:5.5cm y:9.5cm index:9</attribute>
 <attribute name="External tool coupling" type="STRING"></attribute>
 <attribute name="Description" type="LONGSTRING">Johannes Watt Smart Home</attribute>
-<attribute name="Public Address" type="LONGSTRING">0xc6s4df5s64d1cfs300</attribute>
-<attribute name="Private Address" type="LONGSTRING">0xc5s3df9s71d2cfs598</attribute>
+<attribute name="Public Address" type="LONGSTRING">B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE</attribute>
+<attribute name="Private Address" type="LONGSTRING">B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE</attribute>
 </instance>
 <connector id="con.47622" class="ControllingControllsConsumingAppliances">
 <from instance="Energy Controlling" class="Energy Controlling"></from>
@@ -120,10 +120,17 @@
 <attribute name="GraphRep" type="STRING">GRAPHREP rounded:0.05cm&#10;SHADOW mode:off&#10;PEN color:black w:0.02cm color:$727272&#10;EDGE&#10;END&#10;FILL color:black&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm&#10;x3:-0.2cm y3:-0.11cm</attribute>
 <attribute name="AttrRep" type="STRING"></attribute>
 </connector>
-<connector id="con.47638" class="SourceSuppliesControlling">
-<from instance="Energy Source" class="Energy Source"></from>
+<connector id="con.49200" class="ControllingReceivesFromSource">
+<from instance="Energy Controlling" class="Energy Controlling"></from>
+<to instance="Energy Source" class="Energy Source"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:10</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP rounded:0.05cm&#10;SHADOW mode:off&#10;PEN color:black w:0.02cm color:$727272&#10;EDGE&#10;END&#10;FILL color:black&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm&#10;x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.49201" class="ProsumerOwnsControlling">
+<from instance="Johannes Watt" class="Prosumer"></from>
 <to instance="Energy Controlling" class="Energy Controlling"></to>
-<attribute name="Positions" type="STRING">EDGE 0 index:9</attribute>
+<attribute name="Positions" type="STRING">EDGE 0 index:11</attribute>
 <attribute name="GraphRep" type="STRING">GRAPHREP rounded:0.05cm&#10;SHADOW mode:off&#10;PEN color:black w:0.02cm color:$727272&#10;EDGE&#10;END&#10;FILL color:black&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm&#10;x3:-0.2cm y3:-0.11cm</attribute>
 <attribute name="AttrRep" type="STRING"></attribute>
 </connector>
