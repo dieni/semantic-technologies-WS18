@@ -94,6 +94,9 @@ class Ontology:
     def commit(self):
         self.onto.save(self.ontology_path)
 
+    def get_all_contracts(self):
+        return self.onto.search(type=self.onto.Smart_Contract)
+
     def get_eca_contracts(self, prosumer):
         '''
         Get all the eca contracts from a prosumer.
@@ -152,3 +155,9 @@ class Ontology:
 
     def get_ecas(self):
         return self.onto.search(type=self.onto.Energy_Consuming_Appliances)
+
+    def get_ess(self):
+        return self.onto.search(type=self.onto.Energy_Source)
+
+    def get_contract(self, id):
+        return self.onto[id]

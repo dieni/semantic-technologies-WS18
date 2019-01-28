@@ -1,7 +1,7 @@
 from smarthome import app, onto, adoI
 from flask import request, jsonify
 from smarthome.blockchain_handler import BlockchainHandler
-from smarthome.contracts import SmartContract
+from smarthome.contracts import SmartContract, ECAContract
 from smarthome.ontology_handler import Ontology
 import time
 
@@ -72,29 +72,32 @@ def prosumers():
     elif request.method == 'PUT':
         # update a prosumer
 
-        # TODO: Check smart contracts
-
         # retriev all ecas from model
-        prosumer = adoI.import_prosumer(request.data)[0]
-        list_eca = adoI.import_energy_consumption_appliances(request.data)
+        # prosumer = adoI.import_prosumer(request.data)[0]
+        # list_eca = adoI.import_energy_consumption_appliances(request.data)
+        onto_ecas = onto.get_ecas()
 
         # get prosumer private key
         # TODO: privatekey = onto.get_privatekey(prosumer)
-        privatekey = 'B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE'
+        privatekey = "B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE"
         bh = BlockchainHandler(privatekey)
 
         # get all contracts from ontology for ecas
-        # TODO: contracts = onto.get_eca_contracts(prosumer)
 
+        abi = ECAContract.abi
+
+        contracts = []
         # run contracts
-        # for eca in list_eca:
-        #     for c in contracts:
-        #         if c.device_id == eca.id:
-        #             bh.run_eca_contract(c, eca)
+        for eca in onto_ecas:
+            contract = onto.get_contract("sc" + str(eca.name))
 
-        # TODO: create json
+            tx_hash = contract.Contract_Address[0]
+            c = SmartContract(tx_hash, abi, eca.name)
+            msg = bh.run_eca_contract(tx_hash, abi, eca)
+            c.set_msg(msg)
+            contracts.append(c.todict())
 
-        return "ecas and contract msgs"
+        return jsonify(contracts)
 
     else:
         return jsonify(onto.get_prosumers())
@@ -105,15 +108,51 @@ def prosumer(urn):
     return jsonify(onto.get_prosumer_dict(urn))
 
 
-@app.route('/api/prosumers/<prosumer_id>/contracts')
-def contracts():
+@app.route('/api/prosumers/<prosumer_id>/trade')
+def trade(prosumer_id):
+    privatekey = "B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE"
+    bh = BlockchainHandler(privatekey)
+
+    onto_ecas = onto.get_ecas()
+    onto_ess = onto.get_ess()
+
+    consumption = 0
+    for eca in onto_ecas:
+        consumption += int(eca.Power_Consuming_Current[0])
+
+    production = 0
+    for es in onto_ess:
+        production += int(es.Power_Production_Current[0])
+
+    delta = production - consumption
+
+    tx_hash, abi = bh.deploy_contract_trade()
+
+    delta, msg = bh.run_trade_contract(tx_hash, abi, delta)
+
+    return str(delta) + str(msg)
+
+
+@app.route('/api/prosumers/<prosumer_id>/logconsumption')
+def logconsumption(prosumer_id):
     '''
-        GET: Returns a list of all smart contracts a prosumer has.
+        UC: Log energyconsumption
     '''
 
-    #contracts = onto.get_contracts()
+    privatekey = "B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE"
+    bh = BlockchainHandler(privatekey)
 
-    return "List of Smart contracts"
+    onto_ecas = onto.get_ecas()
+
+    consumption = 0
+    for eca in onto_ecas:
+        consumption += int(eca.Power_Consuming_Current[0])
+
+    tx_hash, abi = bh.deploy_contract_Logger(consumption)
+
+    msg = bh.run_log_contract(tx_hash, abi)
+
+    return "Your cunsumption was logged with: " + str(msg) + " Watt!"
 
 
 @app.route('/prosumers/<prosumer_id>/deploycontracts')
@@ -125,8 +164,9 @@ def deployContracts(prosumer_id):
     privatekey = 'B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE'
     bh = BlockchainHandler(privatekey)
 
-    prosumer = onto.get_prosumer(str(prosumer_id))
-    onto_ecas = onto.get_eca_from_prosumer(prosumer)
+    # prosumer = onto.get_prosumer(str(prosumer_id))
+    # onto_ecas = onto.get_eca_from_prosumer(prosumer)
+    onto_ecas = onto.get_ecas()
 
     contracts = []
     for eca in onto_ecas:
@@ -141,29 +181,9 @@ def deployContracts(prosumer_id):
         # append as dict so we can serialize it to json later
         contracts.append(contract.todict())
         # We need to wait befor we deploy the next contract
-        time.sleep(50)
 
     onto.commit()
 
     # Add contract tx_hash to eca
 
     return jsonify(contracts)
-
-
-@app.route('/test')
-def test():
-    # return str(len(onto.get_ecas()))
-    onto = Ontology()
-    prosumer = onto.get_prosumer("obj.48600")
-    ecas = onto.get_eca_from_prosumer(prosumer)
-
-    return prosumer.name
-
-# @app.route('/api/prosumers/<prosumer_id>/devices/')
-# def devices():
-#     pass
-
-
-# @app.route('/api/prosumers/<prosumer_id>/devices/<device_id>')
-# def device():
-#     pass

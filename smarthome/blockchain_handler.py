@@ -1,6 +1,6 @@
 from web3 import Web3, HTTPProvider
 from solc import compile_files, compile_source
-from smarthome.contracts import ECAContract, HelloWorld, SmartContract
+from smarthome.contracts import ECAContract, HelloWorld, SmartContract, LogyourEnergy, TradingPlatform
 
 
 class BlockchainHandler:
@@ -35,7 +35,9 @@ class BlockchainHandler:
         signed = self.acct.signTransaction(construct_txn)
 
         tx_hash = self.w3.eth.sendRawTransaction(signed.rawTransaction)
-        return str(tx_hash.hex()), contract_interface['abi']
+
+        tx_receipt = self.w3.eth.waitForTransactionReceipt(tx_hash)
+        return str(tx_receipt['contractAddress']), contract_interface['abi']
 
     def deploy_contract_ECA(self, eca):
         '''
@@ -47,11 +49,29 @@ class BlockchainHandler:
         # contract = ECAContract(
         #     eca.id, eca.name, eca.powerConsumingMaximum)
         contract = ECAContract(
-            eca.name, eca.Name, eca.Power_Consuming_Maximum)
+            eca.name, eca.Name, eca.Power_Consuming_Maximum[0])
 
         contracts = compile_source(contract.source)
 
         main_contract = contracts.pop('<stdin>:Frigerator')
+
+        return self.deploy_contract(main_contract)
+
+    def deploy_contract_Logger(self, consumption):
+        contract = LogyourEnergy(consumption)
+
+        contracts = compile_source(contract.source)
+
+        main_contract = contracts.pop('<stdin>:LogyourEnergy')
+
+        return self.deploy_contract(main_contract)
+
+    def deploy_contract_trade(self):
+        contract = TradingPlatform()
+
+        contracts = compile_source(contract.source)
+
+        main_contract = contracts.pop('<stdin>:Trade')
 
         return self.deploy_contract(main_contract)
 
@@ -72,10 +92,23 @@ class BlockchainHandler:
 
         return self.deploy_contract(main_contract)
 
-    def run_eca_contract(self, c, eca):
+    def run_eca_contract(self, tx_hash, abi, eca):
         '''
 
         '''
-        contract = self.w3.eth.contract(address=c.tx_hash, abi=c.abi)
+        contract = self.w3.eth.contract(
+            address=tx_hash, abi=abi)
 
-        return contract.functions.getMessage(eca.powerConsumingCurrent).call()
+        return contract.functions.getMessage(int(eca.Power_Consuming_Current[0])).call()
+
+    def run_log_contract(self, tx_hash, abi):
+        contract = self.w3.eth.contract(
+            address=tx_hash, abi=abi)
+
+        return contract.functions.getMessage().call()
+
+    def run_trade_contract(self, tx_hash, abi, delta):
+        contract = self.w3.eth.contract(
+            address=tx_hash, abi=abi)
+
+        return contract.functions.getMessage(int(delta)).call()

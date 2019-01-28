@@ -20,6 +20,44 @@ class SmartContract:
         return x
 
 
+class LogyourEnergy:
+
+    def __init__(self, consumption):
+
+        self.source = '''
+        pragma solidity ^0.4.25;
+
+        
+                contract LogyourEnergy {
+                    
+                    int loggedConsumption =''' + str(consumption) + ''';
+
+                    function getMessage() public view returns(int){
+                        return loggedConsumption;
+                    }
+                }
+            '''
+
+    abi = '''
+                [
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "getMessage",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "int256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]
+    '''
+
+
 class TradingPlatform:
 
     def __init__(self):
@@ -28,9 +66,9 @@ class TradingPlatform:
         pragma solidity ^0.4.25;
 
         contract Trade {
-            string sell = "Strom wird zum Verkauf auf Trading Platform angeboten.";
-            string buy = "Strom wird auf Trading Platform gekauft.";
-            string breakeven = "Watt. Verbrauch entspricht Eigenproduktion.";
+            string sell = " Watt Strom wird zum Verkauf auf Trading Platform angeboten.";
+            string buy = " Watt Strom wird auf Trading Platform gekauft.";
+            string breakeven = " Watt Strom. Verbrauch entspricht Eigenproduktion.";
 
             function getMessage(int householddelta) public view returns(int, string){
                 if (householddelta>0) {
@@ -44,33 +82,33 @@ class TradingPlatform:
         }
         '''
 
-        self.abi = '''
-                [
-            {
-                "constant": true,
-                "inputs": [
-                    {
-                        "name": "householddelta",
-                        "type": "int256"
-                    }
-                ],
-                "name": "getMessage",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "int256"
-                    },
-                    {
-                        "name": "",
-                        "type": "string"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            }
-        ]
-         '''
+    abi = '''
+            [
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "householddelta",
+                    "type": "int256"
+                }
+            ],
+            "name": "getMessage",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "int256"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]
+    '''
 
 
 class ECAContract:
@@ -80,7 +118,7 @@ class ECAContract:
         self.name = name
         self.maxconsumption = maxconsumption
 
-        self.source = '''
+        self.source2 = '''
         pragma solidity ^0.4.25;
 
         
@@ -98,7 +136,7 @@ class ECAContract:
         }
         '''
 
-        self.source2 = '''
+        self.source = '''
         pragma solidity ^0.4.25;
 
  
@@ -115,41 +153,41 @@ class ECAContract:
             }
         }'''
 
-        self.abi = '''[
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "energymax",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "int256"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [
-                    {
-                        "name": "energyamount",
-                        "type": "int256"
-                    }
-                ],
-                "name": "getMessage",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "string"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            }
-        ]'''
+    abi = '''[
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "energymax",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "int256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "energyamount",
+                    "type": "int256"
+                }
+            ],
+            "name": "getMessage",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]'''
 
 
 class HelloWorld:
