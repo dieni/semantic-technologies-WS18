@@ -1,0 +1,120 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<adoxml xmlns="@boc-eu.com/boc-is/adonis.model.document;1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="@boc-eu.com/boc-is/adonis.model.document;1 adoxmlmodel.xsd" version="" date="28.01.2019" time="22:02:14" database="adoxxdb" username="Joseph Volt" adoversion="5.1">
+<models>
+<model id="51403" name="Model 3" version="" modeltype="Energy Blockchain Trading Library" libtype="bp" applib="Energy Blockchain Trading Dynamic Library">
+<modelattributes>
+<attribute name="Version number" type="STRING"></attribute>
+<attribute name="Author" type="STRING">Joseph Volt</attribute>
+<attribute name="Creation date" type="STRING">28.01.2019, 21:46</attribute>
+<attribute name="Date last changed" type="STRING">28.01.2019, 22:00:07</attribute>
+<attribute name="Last user" type="STRING">Joseph Volt</attribute>
+<attribute name="Keywords" type="STRING"></attribute>
+<attribute name="Comment" type="STRING"></attribute>
+<attribute name="Model type" type="ENUMERATION">Current model</attribute>
+<attribute name="State" type="ENUMERATION">In process</attribute>
+<attribute name="Reviewed on" type="STRING"></attribute>
+<attribute name="Reviewed by" type="STRING"></attribute>
+<attribute name="Description" type="STRING"></attribute>
+<attribute name="Number of objects and relations" type="INTEGER">9</attribute>
+<attribute name="World area" type="STRING">w:20.22cm h:28.21cm minw:5cm minh:5cm</attribute>
+<attribute name="Grid" type="STRING"></attribute>
+<attribute name="Zoom" type="INTEGER">100</attribute>
+<attribute name="Viewable area" type="STRING">VIEW representation:graphic&#10;GRAPHIC x:-16 y:48 w:723 h:556 scale:1&#10;TABLE&#10;</attribute>
+<attribute name="Current mode" type="STRING"></attribute>
+<attribute name="Base name" type="STRING">Model 3</attribute>
+<attribute name="Access state" type="ENUMERATION">write</attribute>
+<attribute name="Current page layout" type="STRING"></attribute>
+<attribute name="Connector marks" type="STRING"></attribute>
+<attribute name="Type" type="STRING">Energy Blockchain Trading Library</attribute>
+<attribute name="Change counter" type="INTEGER">153</attribute>
+<attribute name="Font size" type="INTEGER">0</attribute>
+<attribute name="Context of version" type="STRING"></attribute>
+</modelattributes>
+<instance id="obj.51438" class="Prosumer" name="Prosumer">
+<attribute name="Position" type="STRING">NODE x:5.5cm y:7cm index:1</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+<attribute name="Description" type="LONGSTRING">Prosumers Smart Home</attribute>
+<attribute name="Public Address" type="LONGSTRING"></attribute>
+<attribute name="Private Address" type="LONGSTRING">B99D08E11DD90D55DB8A4442479BAFB1E8B18EEEDBF6F7BE54500DFBBDBC9DFE</attribute>
+</instance>
+<instance id="obj.51441" class="Energy Controlling" name="Energy Controlling-51441">
+<attribute name="Position" type="STRING">NODE x:8cm y:7cm index:2</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+<attribute name="Description" type="LONGSTRING"></attribute>
+<attribute name="System Type" type="LONGSTRING"></attribute>
+<attribute name="Counter" type="DOUBLE">0</attribute>
+<attribute name="Task" type="LONGSTRING"></attribute>
+<attribute name="Type" type="ENUMERATION">Controller Unit</attribute>
+</instance>
+<instance id="obj.51445" class="Energy Source" name="Energy Source-51445">
+<attribute name="Position" type="STRING">NODE x:11.5cm y:7cm index:4</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+<attribute name="Power Supplying Maximum" type="DOUBLE">0</attribute>
+<attribute name="Power Supplying Average" type="DOUBLE">0</attribute>
+<attribute name="Power Supplying Current" type="DOUBLE">0</attribute>
+<attribute name="Supplying Begin" type="DATETIME">2002:01:01 00:00:00</attribute>
+<attribute name="Supplying End" type="DATETIME">2002:01:01 00:00:00</attribute>
+<attribute name="Description" type="LONGSTRING"></attribute>
+<attribute name="Power Production Maximum" type="DOUBLE">0</attribute>
+<attribute name="Power Production Average" type="DOUBLE">0</attribute>
+<attribute name="Power Production Current" type="DOUBLE">1000</attribute>
+<attribute name="Production Begin" type="DATETIME">2002:01:01 00:00:00</attribute>
+<attribute name="Production End" type="DATETIME">2002:01:01 00:00:00</attribute>
+<attribute name="Active" type="ENUMERATION">True</attribute>
+<attribute name="Type" type="ENUMERATION">Photovoltaic System</attribute>
+</instance>
+<instance id="obj.51449" class="Energy Consuming Appliances" name="Energy Consuming Appliance 1">
+<attribute name="Position" type="STRING">NODE x:6.5cm y:11.5cm index:6</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+<attribute name="Description" type="LONGSTRING"></attribute>
+<attribute name="Power Consuming Maximum" type="DOUBLE">500</attribute>
+<attribute name="Power Consuming Average" type="DOUBLE">300</attribute>
+<attribute name="Power Consuming Current" type="DOUBLE">600</attribute>
+<attribute name="Consuming Begin" type="DATETIME">2002:01:01 00:00:00</attribute>
+<attribute name="Consuming End" type="DATETIME">2002:01:01 00:00:00</attribute>
+<attribute name="Active" type="ENUMERATION">True</attribute>
+<attribute name="Type" type="ENUMERATION">Refrigerator</attribute>
+</instance>
+<instance id="obj.51453" class="Energy Consuming Appliances" name="Energy Consuming Appliance 2">
+<attribute name="Position" type="STRING">NODE x:9.5cm y:11.5cm index:8</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+<attribute name="Description" type="LONGSTRING"></attribute>
+<attribute name="Power Consuming Maximum" type="DOUBLE">300</attribute>
+<attribute name="Power Consuming Average" type="DOUBLE">150</attribute>
+<attribute name="Power Consuming Current" type="DOUBLE">200</attribute>
+<attribute name="Consuming Begin" type="DATETIME">2002:01:01 00:00:00</attribute>
+<attribute name="Consuming End" type="DATETIME">2002:01:01 00:00:00</attribute>
+<attribute name="Active" type="ENUMERATION">True</attribute>
+<attribute name="Type" type="ENUMERATION">Washing Machine</attribute>
+</instance>
+<connector id="con.51444" class="ProsumerOwnsControlling">
+<from instance="Prosumer" class="Prosumer"></from>
+<to instance="Energy Controlling-51441" class="Energy Controlling"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:3</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP rounded:0.05cm&#10;SHADOW mode:off&#10;PEN color:black w:0.02cm color:$727272&#10;EDGE&#10;END&#10;FILL color:black&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm&#10;x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.51448" class="ControllingReceivesFromSource">
+<from instance="Energy Controlling-51441" class="Energy Controlling"></from>
+<to instance="Energy Source-51445" class="Energy Source"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:5</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP rounded:0.05cm&#10;SHADOW mode:off&#10;PEN color:black w:0.02cm color:$727272&#10;EDGE&#10;END&#10;FILL color:black&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm&#10;x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.51452" class="ControllingControllsConsumingAppliances">
+<from instance="Energy Controlling-51441" class="Energy Controlling"></from>
+<to instance="Energy Consuming Appliance 1" class="Energy Consuming Appliances"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:7</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP rounded:0.05cm&#10;SHADOW mode:off&#10;PEN color:black w:0.02cm color:$727272&#10;EDGE&#10;END&#10;FILL color:black&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm&#10;x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.51456" class="ControllingControllsConsumingAppliances">
+<from instance="Energy Controlling-51441" class="Energy Controlling"></from>
+<to instance="Energy Consuming Appliance 2" class="Energy Consuming Appliances"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:9</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP rounded:0.05cm&#10;SHADOW mode:off&#10;PEN color:black w:0.02cm color:$727272&#10;EDGE&#10;END&#10;FILL color:black&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm&#10;x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+</model>
+</models>
+</adoxml>
