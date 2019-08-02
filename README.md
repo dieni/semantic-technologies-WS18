@@ -11,3 +11,6 @@ For the interaction between the testnet and our application
 For the API to our system
 ### Owlready2
 For the semantic enrichment of the data.
+
+## Execution
+run smarthome.py
